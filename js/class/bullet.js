@@ -25,10 +25,10 @@ Bullet.prototype.update = function() {
     this.y += Math.sin(this.angle) * this.speed;
     if (this.isFriendly) {
         for (var enemy in enemies) {
-            if (this.x + 128 > enemies[enemy].x &&
-                this.x < enemies[enemy].x + enemies[enemy].width &&
-                this.y + 128 > enemies[enemy].y &&
-                this.y < enemies[enemy].y + enemies[enemy].height
+            if (this.x + 128/2 > enemies[enemy].x - enemies[enemy].width/2 &&
+                this.x -128/2< enemies[enemy].x + enemies[enemy].width/2 &&
+                this.y + 128/2 > enemies[enemy].y-enemies[enemy].height/2 &&
+                this.y -128/2< enemies[enemy].y + enemies[enemy].height/2
             ) {
                 var rand = Math.random();
                 if (rand > 0.95) {
@@ -47,10 +47,10 @@ Bullet.prototype.update = function() {
         if (gameOver) {
             return;
         }
-        if (this.x + 128 > player.x &&
-            this.x < player.x + player.width &&
-            this.y + 128 > player.y &&
-            this.y < player.y + player.height
+        if (this.x + 128/2 > player.x -player.width/2 &&
+            this.x -128/2 < player.x + player.width/2 &&
+            this.y + 128/2 > player.y - player.height/2 &&
+            this.y -128/2 < player.y + player.height/2
         ) {
             audio.playBoom();
             player.removeScore(150);
