@@ -5,9 +5,11 @@ var Bullet = function(x, y, speed, angle, isFriendly) {
     this.angle = angle;
     this.isFriendly = isFriendly;
     this.img = new Image();
-    this.img.src = (this.isFriendly) ? "img/blue/bullet.png" : "img/red/bullet_reverse.png";
+    this.img.src = (this.isFriendly) ? "img/blue/bullet.png" : "img/red/bullet.png";
     //define el ancho y el alto de la imagen de la bala para ajustar mejor las hitbox
 };
+
+
 
 Bullet.prototype.tick = function() {
     this.update();
