@@ -8,7 +8,7 @@ var Enemy = function(animation) {
     this.width = 250;
     this.height = 250;
     this.shootSpeed = 2;
-};
+}; //borralo luego
 
 Enemy.prototype.tick = function() {
     this.update();
