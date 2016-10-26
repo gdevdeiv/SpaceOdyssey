@@ -42,7 +42,7 @@ Enemy.prototype.update = function() {
 };
 
 Enemy.prototype.render = function() {
-    drawRotatedImage(this.animation.getActualSprite().getImg(), this.x, this.y, this.width, this.height, this.angle);
+    drawRotatedImage(this.animation.getActualSprite().getImg(), this.x, this.y, this.width, this.height, this.angle+Math.PI);
 };
 
 Enemy.prototype.shoot = function() {
