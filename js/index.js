@@ -34,6 +34,7 @@ $(document).ready(function() {
 
     console.log("%cLoaded. Running at " + fps + " FPS.", "font-weight:bold");
 
+    // Comentario.
     temp = setTimeout(fLoop, (1 / fps) * 1000);
 });
 
