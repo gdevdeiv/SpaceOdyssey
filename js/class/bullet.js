@@ -6,6 +6,7 @@ var Bullet = function(x, y, speed, angle, isFriendly) {
     this.isFriendly = isFriendly;
     this.img = new Image();
     this.img.src = (this.isFriendly) ? "img/blue/bullet.png" : "img/red/bullet_reverse.png";
+    //define el ancho y el alto de la imagen de la bala para ajustar mejor las hitbox
 };
 
 Bullet.prototype.tick = function() {
@@ -22,9 +23,9 @@ Bullet.prototype.update = function() {
     this.y += Math.sin(this.angle) * this.speed;
     if (this.isFriendly) {
         for (var enemy in enemies) {
-            if (this.x > enemies[enemy].x &&
+            if (this.x /*mas ancho de la bala*/ > enemies[enemy].x &&
                 this.x < enemies[enemy].x + enemies[enemy].width &&
-                this.y > enemies[enemy].y &&
+                this.y /*mas alto de la bala*/ > enemies[enemy].y &&
                 this.y < enemies[enemy].y + enemies[enemy].height
             ) {
                 var rand = Math.random();
@@ -44,9 +45,9 @@ Bullet.prototype.update = function() {
         if (gameOver) {
             return;
         }
-        if (this.x > player.x &&
+        if (this.x /*+ancho de la bala*/ > player.x &&
             this.x < player.x + player.width &&
-            this.y > player.y &&
+            this.y /* mas alto de la bala*/ > player.y &&
             this.y < player.y + player.height
         ) {
             audio.playBoom();
