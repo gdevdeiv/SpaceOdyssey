@@ -23,9 +23,9 @@ Bullet.prototype.update = function() {
     this.y += Math.sin(this.angle) * this.speed;
     if (this.isFriendly) {
         for (var enemy in enemies) {
-            if (this.x /*mas ancho de la bala*/ > enemies[enemy].x &&
+            if (this.x + 128 > enemies[enemy].x &&
                 this.x < enemies[enemy].x + enemies[enemy].width &&
-                this.y /*mas alto de la bala*/ > enemies[enemy].y &&
+                this.y + 128 > enemies[enemy].y &&
                 this.y < enemies[enemy].y + enemies[enemy].height
             ) {
                 var rand = Math.random();
@@ -45,9 +45,9 @@ Bullet.prototype.update = function() {
         if (gameOver) {
             return;
         }
-        if (this.x /*+ancho de la bala*/ > player.x &&
+        if (this.x + 128 > player.x &&
             this.x < player.x + player.width &&
-            this.y /* mas alto de la bala*/ > player.y &&
+            this.y + 128 > player.y &&
             this.y < player.y + player.height
         ) {
             audio.playBoom();
