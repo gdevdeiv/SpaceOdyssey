@@ -20,8 +20,3 @@ GameAudio.prototype.playBoom = function() {
     };
     this.sounds[id].play();
 };
-
-function initAudio() {
-    audio = new GameAudio();
-    audio.playBso();
-}

@@ -7,6 +7,10 @@ Math.lerp = function (a, b, n) {
 	return a + (b - a) * n;
 };
 
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function drawRotatedImage(img, x, y, width, height, angle) {
 	context.save();
 	context.translate(x, y);

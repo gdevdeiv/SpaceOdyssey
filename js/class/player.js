@@ -1,6 +1,6 @@
 var Player = function(animation) {
-    this.x = 0;
-    this.y = 0;
+    this.x = 256;
+    this.y = height / 2;
     this.speedX = 0;
     this.speedY = 0;
     this.speedMultiplier = 1 / 4;

@@ -4,8 +4,8 @@ var gameOver = false;
 var ticks = 0;
 
 var player;
-var audio;
-var stars = [];
+var audio = new GameAudio();
+var stars = new Stars();
 var bullets = [];
 var enemies = [];
 var items = [];
@@ -25,8 +25,8 @@ $(document).ready(function() {
     context = canvas.getContext("2d");
 
     spawnPlayer();
-    spawnStars();
-    initAudio();
+    stars.init();
+    audio.playBso();
     initInput();
 
     $("#canvas").attr("width", width);
@@ -34,7 +34,6 @@ $(document).ready(function() {
 
     console.log("%cLoaded. Running at " + fps + " FPS.", "font-weight:bold");
 
-    // Comentario.
     temp = setTimeout(fLoop, (1 / fps) * 1000);
 });
 
@@ -45,14 +44,9 @@ var fLoop = function() {
     if (ticks % 140 === 0) {
         spawnEnemy();
     }
-   /* if (ticks % 300 === 0) {
-        spawnEnemy2();
-    }*/
-        console.log(player.x)
-    updateStars();
+    stars.tick();
     updateBullets();
     updateEnemies();
-    //updateEnemies2();
     if (!gameOver) {
         player.tick();
     }
