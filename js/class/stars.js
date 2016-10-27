@@ -23,35 +23,30 @@ Stars.prototype.init = function() {
 };
 
 Stars.prototype.tick = function() {
-    this.update();
-    this.render();
-};
-
-Stars.prototype.update = function() {
-    for (var layer in this.layers) {
-        for (var stars in this.layers[layer]) {
-            var star = this.layers[layer][stars];
-            if (this.inBounds(star.x, star.y)) {
-                star.x += star.speedX + (player.movementX * (star.speedX / 2));
-                star.y += star.speedY + (player.movementY * (star.speedY / 2));
-            } else {
-                star.x = getRandomInt(0, width);
-                star.y = 1;
-            }
-        }
-    }
-};
-
-Stars.prototype.render = function() {
     context.fillStyle = "#FFFFFF";
     for (var layer in this.layers) {
         for (var stars in this.layers[layer]) {
             var star = this.layers[layer][stars];
-            context.beginPath();
-            context.arc(star.x, star.y, star.radius, 0, 2 * Math.PI, false);
-            context.fill();
+            this.update(star);
+            this.render(star);
         }
     }
+};
+
+Stars.prototype.update = function(star) {
+    if (this.inBounds(star.x, star.y)) {
+        star.x += star.speedX + (player.movementX * (star.speedX / 2));
+        star.y += star.speedY + (player.movementY * (star.speedY / 2));
+    } else {
+        star.x = getRandomInt(0, width);
+        star.y = 1;
+    }
+};
+
+Stars.prototype.render = function(star) {
+    context.beginPath();
+    context.arc(star.x, star.y, star.radius, 0, 2 * Math.PI, false);
+    context.fill();
 };
 
 Stars.prototype.inBounds = function(x, y) {

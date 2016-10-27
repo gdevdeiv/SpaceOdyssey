@@ -29,16 +29,12 @@ $(document).ready(function() {
     audio.playBso();
     initInput();
 
-    $("#canvas").attr("width", width);
-    $("#canvas").attr("height", height);
-
     console.log("%cLoaded. Running at " + fps + " FPS.", "font-weight:bold");
 
     temp = setTimeout(fLoop, (1 / fps) * 1000);
 });
 
 var fLoop = function() {
-    clearCanvas();
     resizeCanvas();
 
     if (ticks % 140 === 0) {
