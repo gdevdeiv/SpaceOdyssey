@@ -41,7 +41,11 @@ Enemy.prototype.update = function() {
     this.angle = Math.atan2(_dy, _dx);
     if (ticks % (Math.round(Math.random() * 50) + 150) === 0) {
         this.shoot();
+    }
+    if (ticks % (Math.round(Math.random() * 50) + 200) === 0) {
         this.shoot2();
+    }
+    if (ticks % (Math.round(Math.random() * 50) + 300) === 0) {
         this.shoot3();
     }
 };
@@ -60,7 +64,9 @@ Enemy.prototype.shoot2 = function() {
 
 //balas que persiguen
 Enemy.prototype.shoot3 = function(){
-    bullets.push(new Bullet(this.x, this.y, this.shootSpeed*0.2, this.angle, 3));
+    bullets.push(new Bullet(this.x, this.y, this.shootSpeed*0.3, this.angle, 3));
+    bullets[bullets.length-1].width *= 4;
+    bullets[bullets.length-1].height *= 4;
 }
 
 function updateEnemies() {

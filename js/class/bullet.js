@@ -43,6 +43,9 @@ Bullet.prototype.update = function() {
         }
         this.y += this.speed*Math.sin(this.angle);
         this.x += this.speed*Math.cos(this.angle);
+        this.width-=0.2;
+        this.height-=0.2;
+        if (this.width <=0){bullets.splice(positionInArray, 1);}
     }
 
     if (this.type == 0) {
