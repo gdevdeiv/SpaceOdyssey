@@ -41,6 +41,7 @@ Enemy.prototype.update = function() {
     this.angle = Math.atan2(_dy, _dx);
     if (ticks % (Math.round(Math.random() * 50) + 150) === 0) {
         this.shoot();
+        this.shoot2();
     }
 };
 
@@ -52,7 +53,7 @@ Enemy.prototype.shoot = function() {
 Enemy.prototype.shoot2 = function() {
     for (var i=0;i<16;i++){
         angle = i*Math.PI/8;
-        bullets.push(new Bullet(this.x, this.y, this.shootSpeed, angle, 2));
+        bullets.push(new Bullet(this.x, this.y, this.shootSpeed*0.5, angle, 2));
     }
 }
 

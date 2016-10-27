@@ -39,21 +39,20 @@ $(document).ready(function() {
 });
 
 var fLoop = function() {
-
     clearCanvas();
     resizeCanvas();
 
     if (ticks % 140 === 0) {
         spawnEnemy();
     }
-    if (ticks % 300 === 0) {
+   /* if (ticks % 300 === 0) {
         spawnEnemy2();
-    }
+    }*/
         console.log(player.x)
     updateStars();
     updateBullets();
     updateEnemies();
-    updateEnemies2();
+    //updateEnemies2();
     if (!gameOver) {
         player.tick();
     }

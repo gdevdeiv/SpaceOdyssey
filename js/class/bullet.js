@@ -19,12 +19,16 @@ Bullet.prototype.tick = function() {
 };
 
 Bullet.prototype.update = function() {
+    var positionInArray = bullets.indexOf(this)
     if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-        bullets.splice(this, 1);
+        bullets.splice(positionInArray, 1);
         return;
     }
-    this.x += Math.cos(this.angle) * this.speed;
-    this.y += Math.sin(this.angle) * this.speed;
+    if(this.type <= 2){
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+    }
+
     if (this.type == 0) {
         for (var enemy in enemies) {
             if (this.x + this.width/2 > enemies[enemy].x - enemies[enemy].width/2 &&
@@ -41,13 +45,12 @@ Bullet.prototype.update = function() {
                 audio.playBoom();
                 player.addScore(50);
                 enemies.splice(enemy, 1);
-                    console.log(this.x)
-                bullets.splice(this, 1);
+                bullets.splice(positionInArray, 1);
                 break;
             }
         }
     } 
-    if(this.type == 1) {
+    if(this.type != 0) {
         if (gameOver) {
             return;
         }
@@ -59,7 +62,7 @@ Bullet.prototype.update = function() {
             audio.playBoom();
             player.removeScore(150);
             player.removeEnergy(1);
-            bullets.splice(this, 1);
+            bullets.splice(positionInArray, 1);
         }
     }
 };
