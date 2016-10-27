@@ -8,7 +8,7 @@ var Enemy = function(animation) {
     this.width = width/20;
     this.height = width/20;
     this.shootSpeed = 10;
-
+    
     this.tick = function(){
         this.update();
         this.render();
