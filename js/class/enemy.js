@@ -8,12 +8,15 @@ var Enemy = function(animation) {
     this.width = width/20;
     this.height = width/20;
     this.shootSpeed = 10;
-}; 
 
-Enemy.prototype.tick = function() {
-    this.update();
-    this.render();
-};
+    this.tick = function(){
+        this.update();
+        this.render();
+    };
+    this.render = function() {
+        drawRotatedImage(this.animation.getActualSprite().getImg(), this.x, this.y, this.width, this.height, this.angle+Math.PI);
+    };
+}; 
 
 Enemy.prototype.update = function() {
     if (this.x < -this.width) {
@@ -39,10 +42,6 @@ Enemy.prototype.update = function() {
     if (ticks % (Math.round(Math.random() * 50) + 150) === 0) {
         this.shoot();
     }
-};
-
-Enemy.prototype.render = function() {
-    drawRotatedImage(this.animation.getActualSprite().getImg(), this.x, this.y, this.width, this.height, this.angle+Math.PI);
 };
 
 Enemy.prototype.shoot = function() {
