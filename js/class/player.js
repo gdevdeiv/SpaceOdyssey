@@ -11,15 +11,15 @@ var Player = function(animation) {
     this.angle = 0;
     this.score = 0;
     this.animation = animation;
-    this.width = 150;
-    this.height = 150;
+    this.width = width/20;
+    this.height = width/20;
     this.sprite = 1;
     this.maxSprites = 5;
     this.energy = 10;
     this.maxEnergy = 10;
     this.ammo = 40;
     this.maxAmmo = 40;
-    this.shootSpeed = 5;
+    this.shootSpeed = 10;
 };
 
 Player.prototype.tick = function() {

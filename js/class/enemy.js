@@ -5,9 +5,9 @@ var Enemy = function(animation) {
     this.speedY = Math.ceil(Math.random() * 3);
     this.angle = 0;
     this.animation = animation;
-    this.width = 250;
-    this.height = 250;
-    this.shootSpeed = 2;
+    this.width = width/20;
+    this.height = width/20;
+    this.shootSpeed = 10;
 }; 
 
 Enemy.prototype.tick = function() {

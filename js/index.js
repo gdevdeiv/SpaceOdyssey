@@ -46,7 +46,7 @@ var fLoop = function() {
     if (ticks % 140 === 0) {
         spawnEnemy();
     }
-
+        console.log(player.x)
     updateStars();
     updateBullets();
     updateEnemies();

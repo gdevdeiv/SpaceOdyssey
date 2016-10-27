@@ -4,6 +4,8 @@ var Item = function(x, y, type) {
 	this.type = type;
 	this.img = new Image();
 	this.img.src = "img/" + this.type + ".png";
+	this.width = player.width/2;
+	this.height = player.height/2;
 };
 
 Item.prototype.tick = function() {
@@ -14,7 +16,7 @@ Item.prototype.tick = function() {
 Item.prototype.update = function() {
 	this.x--;
 	this.y += (Math.random() * 4) - 2;
-	if (Math.abs(this.x - player.x) < 150 && Math.abs(this.y - player.y) < 150) {
+	if (Math.abs(this.x - player.x) < this.width && Math.abs(this.y - player.y) < this.height) {
 		if (this.type == "energy") {
 			player.addEnergy(1);
 		} else if (this.type == "ammo") {
@@ -26,7 +28,7 @@ Item.prototype.update = function() {
 };
 
 Item.prototype.render = function() {
-	context.drawImage(this.img, this.x, this.y, 128, 128);
+	context.drawImage(this.img, this.x, this.y, this.width, this.height);
 };
 
 function spawnItem(x, y, type) {
