@@ -28,6 +28,22 @@ Bullet.prototype.update = function() {
         this.x += Math.cos(this.angle) * this.speed;
         this.y += Math.sin(this.angle) * this.speed;
     }
+    if(this.type == 3){
+        var incrementx = player.x-this.x
+        var incrementy = player.y-this.y
+        this.angle = Math.atan(incrementy/incrementx);
+        if (incrementx < 0 && incrementy > 0){ //segundo cuadrante
+            this.angle-=Math.PI;
+        }
+        if(incrementx < 0 && incrementy < 0){  //tercer cuadrante
+            this.angle-=Math.PI;
+        }
+        if(incrementx > 0 && incrementy < 0){ //cuarto cuadrante
+            this.angle-=2*Math.PI;
+        }
+        this.y += this.speed*Math.sin(this.angle);
+        this.x += this.speed*Math.cos(this.angle);
+    }
 
     if (this.type == 0) {
         for (var enemy in enemies) {

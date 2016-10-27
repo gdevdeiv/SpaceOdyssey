@@ -42,6 +42,7 @@ Enemy.prototype.update = function() {
     if (ticks % (Math.round(Math.random() * 50) + 150) === 0) {
         this.shoot();
         this.shoot2();
+        this.shoot3();
     }
 };
 
@@ -55,6 +56,11 @@ Enemy.prototype.shoot2 = function() {
         angle = i*Math.PI/8;
         bullets.push(new Bullet(this.x, this.y, this.shootSpeed*0.5, angle, 2));
     }
+}
+
+//balas que persiguen
+Enemy.prototype.shoot3 = function(){
+    bullets.push(new Bullet(this.x, this.y, this.shootSpeed*0.2, this.angle, 3));
 }
 
 function updateEnemies() {
