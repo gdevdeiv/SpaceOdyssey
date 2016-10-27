@@ -8,7 +8,7 @@ var Enemy = function(animation) {
     this.width = width/20;
     this.height = width/20;
     this.shootSpeed = 10;
-    
+
     this.tick = function(){
         this.update();
         this.render();
@@ -45,8 +45,16 @@ Enemy.prototype.update = function() {
 };
 
 Enemy.prototype.shoot = function() {
-    bullets.push(new Bullet(this.x + 100, this.y + 10, this.shootSpeed, this.angle, false));
+    bullets.push(new Bullet(this.x + 100, this.y + 10, this.shootSpeed, this.angle, 1));
 };
+
+//balas radiales
+Enemy.prototype.shoot2 = function() {
+    for (var i=0;i<16;i++){
+        angle = i*Math.PI/8;
+        bullets.push(new Bullet(this.x, this.y, this.shootSpeed, angle, 2));
+    }
+}
 
 function updateEnemies() {
     for (var enemy in enemies) {

@@ -1,11 +1,11 @@
-var Bullet = function(x, y, speed, angle, isFriendly) {
+var Bullet = function(x, y, speed, angle, type) {
     this.x = x;
     this.y = y;
     this.speed = speed;
     this.angle = angle;
-    this.isFriendly = isFriendly;
+    this.type = type; //0-player,1-bullet,2-bullet2,3-bullet3...
     this.img = new Image();
-    this.img.src = (this.isFriendly) ? "img/blue/bullet.png" : "img/red/bullet.png";
+    this.img.src = (this.type == 0) ? "img/blue/bullet.png" : "img/red/bullet.png";
     this.width = player.width/3;
     this.height = player.height/3;
     //define el ancho y el alto de la imagen de la bala para ajustar mejor las hitbox
@@ -25,7 +25,7 @@ Bullet.prototype.update = function() {
     }
     this.x += Math.cos(this.angle) * this.speed;
     this.y += Math.sin(this.angle) * this.speed;
-    if (this.isFriendly) {
+    if (this.type == 0) {
         for (var enemy in enemies) {
             if (this.x + this.width/2 > enemies[enemy].x - enemies[enemy].width/2 &&
                 this.x -this.width/2< enemies[enemy].x + enemies[enemy].width/2 &&
@@ -47,7 +47,7 @@ Bullet.prototype.update = function() {
             }
         }
     } 
-    if(!this.isFriendly) {
+    if(this.type == 1) {
         if (gameOver) {
             return;
         }
