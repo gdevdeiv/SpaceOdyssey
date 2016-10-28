@@ -9,6 +9,7 @@ var stars = new Stars();
 var bullets = [];
 var enemies = [];
 var items = [];
+var asteroids = [];
 
 var width = window.innerWidth;
 var height = window.innerHeight;
@@ -29,6 +30,7 @@ $(document).ready(function() {
     bgContext = bgCanvas.getContext("2d");
 
     spawnPlayer();
+    spawnAsteroid();
     stars.init();
     audio.playBso();
     initInput();
@@ -60,6 +62,8 @@ var fLoop = function() {
     if (gameOver) {
         renderGameOverScreen();
     }
+
+    updateAsteroids();
 
     ticks++;
 

@@ -11,8 +11,6 @@ var Bullet = function(x, y, speed, angle, type) {
     //define el ancho y el alto de la imagen de la bala para ajustar mejor las hitbox
 };
 
-
-
 Bullet.prototype.tick = function() {
     this.update();
     this.render();
