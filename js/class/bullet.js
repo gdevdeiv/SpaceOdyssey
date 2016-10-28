@@ -65,6 +65,33 @@ Bullet.prototype.update = function() {
                 break;
             }
         }
+
+
+
+        for (var asteroid in asteroids) {
+            if (this.x + this.width / 2 > asteroids[asteroid].x - asteroids[asteroid].width / 2 &&
+                this.x -this.width / 2 < asteroids[asteroid].x + asteroids[asteroid].width / 2 &&
+                this.y + this.height / 2 > asteroids[asteroid].y - asteroids[asteroid].height / 2 &&
+                this.y -this.height / 2 < asteroids[asteroid].y + asteroids[asteroid].height / 2
+            ) {
+                var rand = Math.random();
+                if (rand > 0.95) {
+                    items.push(new Item(asteroids[asteroid].x, asteroids[asteroid].y, "energy"));
+                } else if (rand > 0.8) {
+                    items.push(new Item(asteroids[asteroid].x, asteroids[asteroid].y, "ammo"));
+                }
+                audio.playBoom();
+                player.addScore(50);
+                asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,asteroids[asteroid].size+1));
+                asteroids.splice(asteroid, 1);
+                
+                bullets.splice(positionInArray, 1);
+                break;
+            }
+        }
+
+
+
     } 
     if (this.type !== 0) {
         if (gameOver) {
