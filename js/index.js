@@ -4,8 +4,9 @@ var gameOver = false;
 var ticks = 0;
 
 var player;
-var audio = new GameAudio();
 var stars = new Stars();
+var audio = new GameAudio();
+var input = new GameInput();
 var bullets = [];
 var enemies = [];
 var items = [];
@@ -30,8 +31,8 @@ $(document).ready(function() {
 
     spawnPlayer();
     stars.init();
-    audio.playBso();
-    initInput();
+    audio.init();
+    input.init();
 
     console.log("%cLoaded. Running at " + fps + " FPS.", "font-weight:bold");
 

@@ -3,11 +3,7 @@ var GameAudio = function() {
     this.sounds = [];
 };
 
-GameAudio.prototype.getBso = function() {
-    return this.bso;
-};
-
-GameAudio.prototype.playBso = function() {
+GameAudio.prototype.init = function() {
     this.bso.volume = 0.05;
     this.bso.play();
 };

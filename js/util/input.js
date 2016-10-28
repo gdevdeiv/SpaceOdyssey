@@ -1,16 +1,18 @@
-var bIsMouseDown = false;
-var keysX = [65, 37, 68, 39];
-var keysY = [87, 38, 83, 40];
-var tempX = 0;
-var tempY = 0;
+var GameInput = function() {
+    this.bIsMouseDown = false;
+    this.keysX = [65, 37, 68, 39];
+    this.keysY = [87, 38, 83, 40];
+    this.tempX = 0;
+    this.tempY = 0;
+};
 
-function initInput() {
-    keyboardInput();
-    mouseInput();
-    //touchInput();
-}
+GameInput.prototype.init = function() {
+    this.initKeyboard();
+    this.initMouse();
+    // this.touchInput();
+};
 
-function keyboardInput() {
+GameInput.prototype.initKeyboard = function() {
     $(document).keydown(function(event) {
         switch (event.which) {
             case 87: // W
@@ -35,17 +37,17 @@ function keyboardInput() {
         }
     });
     $(document).keyup(function(event) {
-        if ($.inArray(event.which, keysX) != -1) {
-            player.movementX = 0;
+        if ($.inArray(event.which, input.keysX) != -1) {
+            goStopX();
         }
-        if ($.inArray(event.which, keysY) != -1) {
-            player.movementY = 0;
+        if ($.inArray(event.which, input.keysY) != -1) {
+            goStopY();
         }
     });
-}
+};
 
-function mouseInput() {
-    /*$("#up").mousedown(function() { goY(false); });
+GameInput.prototype.initMouse = function() {
+    /* $("#up").mousedown(function() { goY(false); });
     $("#down").mousedown(function() { goY(true); });
     $("#left").mousedown(function() { goX(false); });
     $("#right").mousedown(function() { goX(true); });
@@ -53,7 +55,7 @@ function mouseInput() {
     $("#down").mouseup(function() { goStopY(); });
     $("#left").mouseup(function() { goStopX(); });
     $("#right").mouseup(function() { goStopX(); });
-    $("#shoot").click(function() { shoot(); });*/
+    $("#shoot").click(function() { shoot(); }); */
     $("#canvas").mousemove(function(event) {
         player.mouseX = event.clientX;
         player.mouseY = event.clientY;
@@ -61,9 +63,9 @@ function mouseInput() {
     $("#canvas").mousedown(function() {
         player.shoot();
     });
-}
+};
 
-function touchInput() {
+/* GameInput.prototype.initTouch = function() {
     $("#canvas").mousemove(function(event) {
         if (bIsMouseDown) {
             player.x = event.clientX - tempX;
@@ -78,7 +80,7 @@ function touchInput() {
     $("#canvas").mouseup(function() {
         bIsMouseDown = false;
     });
-}
+}; */
 
 function goX(b) {
     player.movementX = (b) ? 1 : -1;
