@@ -11,8 +11,8 @@ var Player = function(animation) {
     this.angle = 0;
     this.score = 0;
     this.animation = animation;
-    this.width = width/20;
-    this.height = width/20;
+    this.width = width / 20;
+    this.height = width / 20;
     this.sprite = 1;
     this.maxSprites = 5;
     this.energy = 10;
@@ -67,7 +67,7 @@ Player.prototype.shoot = function() {
         return;
     }
     if (this.removeAmmo(1)) {
-        bullets.push(new BulletFriendly(this.x+75*Math.cos(this.angle), this.y+75*Math.sin(this.angle), this.shootSpeed, this.angle));
+        bullets.push(new BulletFriendly(this.x + 75 * Math.cos(this.angle), this.y + 75 * Math.sin(this.angle), this.shootSpeed, this.angle));
     }
 };
 
@@ -135,13 +135,6 @@ Player.prototype.removeAmmo = function(n) {
     this.ammo -= n;
     return true;
 };
-
-function updatePlayers() {
-    // TODO: More players.
-    /*for (var player in players) {
-        players[player].tick();
-    }*/
-}
 
 function spawnPlayer() {
     var animation = new Animation();

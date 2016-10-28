@@ -5,18 +5,15 @@ var Enemy = function(animation) {
     this.speedY = Math.ceil(Math.random() * 3);
     this.angle = 0;
     this.animation = animation;
-    this.width = width/20;
-    this.height = width/20;
+    this.width = width / 20;
+    this.height = width / 20;
     this.shootSpeed = 10;
-
-    this.tick = function(){
-        this.update();
-        this.render();
-    };
-    this.render = function() {
-        drawRotatedImage(this.animation.getActualSprite().getImg(), this.x, this.y, this.width, this.height, this.angle+Math.PI);
-    };
 }; 
+
+Enemy.prototype.tick = function() {
+    this.update();
+    this.render();
+};
 
 Enemy.prototype.update = function() {
     var positionInArray = enemies.indexOf(this);
@@ -51,9 +48,9 @@ Enemy.prototype.update = function() {
     }
     if (!player.inmune) {
         if (this.x + this.width / 2 > player.x - player.width / 2 &&
-            this.x -this.width / 2 < player.x + player.width / 2 &&
+            this.x - this.width / 2 < player.x + player.width / 2 &&
             this.y + this.height / 2 > player.y - player.height / 2 &&
-            this.y -this.height / 2 < player.y + player.height / 2
+            this.y - this.height / 2 < player.y + player.height / 2
         ) {
             audio.playBoom();
             player.removeScore(150);
@@ -68,6 +65,10 @@ Enemy.prototype.update = function() {
     }
 };
 
+Enemy.prototype.render = function() {
+    drawRotatedImage(this.animation.getActualSprite().getImg(), this.x, this.y, this.width, this.height, this.angle + Math.PI);
+};
+
 Enemy.prototype.shootSimple = function() {
     bullets.push(new BulletSimple(this.x, this.y, this.shootSpeed, this.angle));
 };
@@ -78,7 +79,7 @@ Enemy.prototype.shootRadial = function() {
     }
 };
 
-Enemy.prototype.shootFollower = function(){
+Enemy.prototype.shootFollower = function() {
     bullets.push(new BulletFollower(this.x, this.y, this.shootSpeed * 0.6, this.angle));
     bullets[bullets.length - 1].width *= 4;
     bullets[bullets.length - 1].height *= 4;
