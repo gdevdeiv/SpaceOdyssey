@@ -3,12 +3,12 @@ var Bullet = function(x, y, speed, angle, type) {
     this.y = y;
     this.speed = speed;
     this.angle = angle;
-    this.type = type; //0-player,1-bullet,2-bullet2,3-bullet3...
+    this.type = type; // 0-player,1-bullet,2-bullet2,3-bullet3...
     this.img = new Image();
-    this.img.src = (this.type == 0) ? "img/blue/bullet.png" : "img/red/bullet.png";
-    this.width = player.width/3;
-    this.height = player.height/3;
-    //define el ancho y el alto de la imagen de la bala para ajustar mejor las hitbox
+    this.img.src = (this.type === 0) ? "img/blue/bullet.png" : "img/red/bullet.png";
+    this.width = player.width / 3;
+    this.height = player.height / 3;
+    // define el ancho y el alto de la imagen de la bala para ajustar mejor las hitbox
 };
 
 
@@ -19,36 +19,35 @@ Bullet.prototype.tick = function() {
 };
 
 Bullet.prototype.update = function() {
-    var positionInArray = bullets.indexOf(this)
+    var positionInArray = bullets.indexOf(this);
     if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
         bullets.splice(positionInArray, 1);
         return;
     }
-    if(this.type <= 2){
+    if (this.type <= 2) {
         this.x += Math.cos(this.angle) * this.speed;
         this.y += Math.sin(this.angle) * this.speed;
     }
-    if(this.type == 3){
-        var incrementx = player.x-this.x
-        var incrementy = player.y-this.y
-        this.angle = Math.atan(incrementy/incrementx);
-        if (incrementx < 0 && incrementy > 0){ //segundo cuadrante
-            this.angle-=Math.PI;
+    if (this.type == 3) {
+        var incrementx = player.x - this.x;
+        var incrementy = player.y - this.y;
+        this.angle = Math.atan(incrementy / incrementx);
+        if ((incrementx < 0 && incrementy > 0) || (incrementx < 0 && incrementy < 0)) { // segundo y tercer cuadrante
+            this.angle -= Math.PI;
         }
-        if(incrementx < 0 && incrementy < 0){  //tercer cuadrante
-            this.angle-=Math.PI;
-        }
-        if(incrementx > 0 && incrementy < 0){ //cuarto cuadrante
-            this.angle-=2*Math.PI;
+        if (incrementx > 0 && incrementy < 0) { // cuarto cuadrante
+            this.angle -= 2 * Math.PI;
         }
         this.y += this.speed*Math.sin(this.angle);
         this.x += this.speed*Math.cos(this.angle);
-        this.width-=0.2;
-        this.height-=0.2;
-        if (this.width <=0){bullets.splice(positionInArray, 1);}
+        this.width -= 0.2;
+        this.height -= 0.2;
+        if (this.width <=0) {
+            bullets.splice(positionInArray, 1);
+        }
     }
 
-    if (this.type == 0) {
+    if (this.type === 0) {
         for (var enemy in enemies) {
             if (this.x + this.width/2 > enemies[enemy].x - enemies[enemy].width/2 &&
                 this.x -this.width/2< enemies[enemy].x + enemies[enemy].width/2 &&
@@ -69,7 +68,7 @@ Bullet.prototype.update = function() {
             }
         }
     } 
-    if(this.type != 0) {
+    if(this.type !== 0) {
         if (gameOver) {
             return;
         }
