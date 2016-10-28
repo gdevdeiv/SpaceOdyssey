@@ -35,8 +35,10 @@ Stars.prototype.tick = function() {
 
 Stars.prototype.update = function(star) {
     if (this.inBounds(star.x, star.y)) {
-        star.x += star.speedX + (player.movementX * (star.speedX / 2));
-        star.y += star.speedY + (player.movementY * (star.speedY / 2));
+        /*star.x += star.speedX + (player.movementX * (star.speedX / 2));
+        star.y += star.speedY + (player.movementY * (star.speedY / 2));*/
+        star.x += star.speedX;
+        star.y += star.speedY;
     } else {
         star.x = getRandomInt(0, width);
         star.y = 1;

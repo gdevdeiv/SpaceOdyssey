@@ -5,8 +5,9 @@ var ticks = 0;
 
 var player;
 var stars = new Stars();
-var audio = new GameAudio();
-var input = new GameInput();
+var audio;
+var input;
+var menu = new GameMenu();
 var bullets = [];
 var enemies = [];
 var items = [];
@@ -29,17 +30,32 @@ $(document).ready(function() {
     context = canvas.getContext("2d");
     bgCanvas = document.getElementById("bgCanvas");
     bgContext = bgCanvas.getContext("2d");
+    stars.init();
+    menu.init();
+    temp = setTimeout(fMenuLoop, (1 / fps) * 1000);
+});
 
+var fMenuLoop = function() {
+    if (ticks % 4 === 0) {
+        resizeCanvas();
+        stars.tick();
+    } else {
+        clearCanvas();
+    }
+    clearTimeout(temp);
+    temp = setTimeout(fMenuLoop, (1 / fps) * 1000);
+};
+
+function start() {
     spawnPlayer();
     spawnAsteroid();
-    stars.init();
+    audio = new GameAudio()
     audio.init();
+    input = new GameInput()
     input.init();
-
     console.log("%cLoaded. Running at " + fps + " FPS.", "font-weight:bold");
-
     temp = setTimeout(fLoop, (1 / fps) * 1000);
-});
+}
 
 var fLoop = function() {
     if (ticks % 4 === 0) {
@@ -59,11 +75,12 @@ var fLoop = function() {
         player.tick();
     }
     updateItems();
+    updateAsteroids();
+
     updateHud();
     if (gameOver) {
         renderGameOverScreen();
     }
-    updateAsteroids();
 
     ticks++;
 

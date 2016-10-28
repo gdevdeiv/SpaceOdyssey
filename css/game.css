@@ -27,67 +27,33 @@ canvas {
 
 #bgCanvas {
     background: #171717;
-    color: white;
 }
 
-#score {
+#menu {
     position: absolute;
-    top: 0;
-    right: 0;
-    font-weight: bold;
-    font-size: 32px;
-    text-align: right;
-    color: white;
-}
-
-#controls {
-    position: absolute;
-    top: 0;
-    left: 0;
+    top: 30%;
     width: 100%;
-    height: 100%;
+    text-align: center;
 }
 
-#controls > div {
-    position: absolute;
-    opacity: 0.25;
+#menu > h1 {
+    font-family: '8bitOperatorBold';
+    font-size: 96px;
+    color: white;
 }
 
-#controls > div#shoot {
-    top: 25%;
-    left: 25%;
-    width: 50%;
-    height: 50%;
+#menu > button {
+    width: 320px;
+    height: 100px;
+    background: transparent;
+    color: white;
+    border: 3px solid white;
+    font-family: '8bitOperatorBold';
+    font-size: 36px;
+    text-align: center;
+    cursor: pointer;
 }
-
-#controls > div#up {
-    top: 0;
-    left: 25%;
-    width: 50%;
-    height: 25%;
-    /*border-bottom: 1px solid white;*/
-}
-
-#controls > div#down {
-    bottom: 0;
-    left: 25%;
-    width: 50%;
-    height: 25%;
-    /*border-top: 1px solid white;*/
-}
-
-#controls > div#left {
-    left: 0;
-    top: 0;
-    width: 25%;
-    height: 100%;
-    /*border-right: 1px solid white;*/
-}
-
-#controls > div#right {
-    right: 0;
-    top: 0;
-    width: 25%;
-    height: 100%;
-    /*border-left: 1px solid white;*/
+#menu > button:hover {
+    background: white;
+    color: black;
 }
