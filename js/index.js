@@ -34,6 +34,7 @@ $(document).ready(function() {
     stars.init();
     audio.playBso();
     initInput();
+  
 
     console.log("%cLoaded. Running at " + fps + " FPS.", "font-weight:bold");
 
@@ -62,7 +63,6 @@ var fLoop = function() {
     if (gameOver) {
         renderGameOverScreen();
     }
-
     updateAsteroids();
 
     ticks++;
