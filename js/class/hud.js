@@ -29,7 +29,7 @@ function updateScore() {
     //context.fillStyle = "#E39415";
     context.fillStyle = (score < 0) ? "red" : "white";
     context.font = "32px '8bitOperatorBold'";
-    context.fillText(score, width - context.measureText(score).width - 40, 40);
+    context.fillText(score, width - context.measureText(score).width - 20, 40);
 }
 
 function renderGameOverScreen() {

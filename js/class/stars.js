@@ -1,9 +1,9 @@
 var Stars = function() {
     this.layers = [];
-    this.density = 128;
+    this.density = 96;
     this.radius = 1.5;
     this.speedX = 0;
-    this.speedY = 3;
+    this.speedY = 1.5;
 };
 
 Stars.prototype.init = function() {
@@ -23,7 +23,7 @@ Stars.prototype.init = function() {
 };
 
 Stars.prototype.tick = function() {
-    context.fillStyle = "#FFFFFF";
+    bgContext.fillStyle = "#FFFFFF";
     for (var layer in this.layers) {
         for (var stars in this.layers[layer]) {
             var star = this.layers[layer][stars];
@@ -44,9 +44,10 @@ Stars.prototype.update = function(star) {
 };
 
 Stars.prototype.render = function(star) {
-    context.beginPath();
-    context.arc(star.x, star.y, star.radius, 0, 2 * Math.PI, false);
-    context.fill();
+    bgContext.beginPath();
+    bgContext.arc(star.x, star.y, star.radius, 0, 2 * Math.PI, false);
+    bgContext.closePath();
+    bgContext.fill();
 };
 
 Stars.prototype.inBounds = function(x, y) {

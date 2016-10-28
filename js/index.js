@@ -11,7 +11,7 @@ var enemies = [];
 var items = [];
 
 var width = window.innerWidth;
-var height = window.innerHeight - 20;
+var height = window.innerHeight;
 var margin = 100;
 
 var bso;
@@ -19,10 +19,14 @@ var sounds = [];
 
 var canvas;
 var context;
+var bgCanvas;
+var bgContext;
 
 $(document).ready(function() {
     canvas = document.getElementById("canvas");
     context = canvas.getContext("2d");
+    bgCanvas = document.getElementById("bgCanvas");
+    bgContext = bgCanvas.getContext("2d");
 
     spawnPlayer();
     stars.init();
@@ -35,12 +39,17 @@ $(document).ready(function() {
 });
 
 var fLoop = function() {
-    resizeCanvas();
+    if (ticks % 4 === 0) {
+        resizeCanvas();
+        stars.tick();
+    } else {
+        clearCanvas();
+    }
 
     if (ticks % 140 === 0) {
         spawnEnemy();
     }
-    stars.tick();
+
     updateBullets();
     updateEnemies();
     if (!gameOver) {

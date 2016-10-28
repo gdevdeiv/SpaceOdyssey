@@ -19,9 +19,16 @@ function drawRotatedImage(img, x, y, width, height, angle) {
 	context.restore();
 }
 
+function clearCanvas() {
+	context.clearRect(0, 0, width, height);
+	
+}
+
 function resizeCanvas() {
 	width = window.innerWidth;
-	height = window.innerHeight - 20;
+	height = window.innerHeight;
 	canvas.width = width;
 	canvas.height = height;
+	bgCanvas.width = width;
+	bgCanvas.height = height;
 }
