@@ -19,6 +19,7 @@ var Enemy = function(animation) {
 }; 
 
 Enemy.prototype.update = function() {
+    var positionInArray = enemies.indexOf(this);
     if (this.x < -this.width) {
         enemies.splice(this, 1);
         return;
@@ -47,6 +48,21 @@ Enemy.prototype.update = function() {
     }
     if (ticks % (Math.round(Math.random() * 50) + 300) === 0) {
         this.shoot3();
+    }
+    if(!player.inmune){
+        if (this.x + this.width / 2 > player.x - player.width / 2 &&
+            this.x -this.width / 2 < player.x + player.width / 2 &&
+            this.y + this.height / 2 > player.y - player.height / 2 &&
+            this.y -this.height / 2 < player.y + player.height / 2
+        ) {
+            audio.playBoom();
+            player.removeScore(150);
+            player.removeEnergy(1);
+            enemies.splice(positionInArray, 1);
+            player.inmune = true;
+            clearTimeout(counterInmunity);
+            counterInmunity = setTimeout("player.inmune = false",player.inmuneTime);
+        }
     }
 };
 
