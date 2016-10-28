@@ -50,24 +50,24 @@ Enemy.prototype.update = function() {
     }
 };
 
+// Simple shot.
 Enemy.prototype.shoot = function() {
-    bullets.push(new Bullet(this.x + 100, this.y + 10, this.shootSpeed, this.angle, 1));
+    bullets.push(new Bullet(this.x, this.y, this.shootSpeed, this.angle, 1));
 };
 
-//balas radiales
+// Radial shot.
 Enemy.prototype.shoot2 = function() {
-    for (var i=0;i<16;i++){
-        angle = i*Math.PI/8;
-        bullets.push(new Bullet(this.x, this.y, this.shootSpeed*0.5, angle, 2));
+    for (var i = 0; i < 16; i++) {
+        bullets.push(new Bullet(this.x, this.y, this.shootSpeed * 0.6, i * (Math.PI / 8), 2));
     }
-}
+};
 
-//balas que persiguen
+// Follower shot.
 Enemy.prototype.shoot3 = function(){
-    bullets.push(new Bullet(this.x, this.y, this.shootSpeed*0.3, this.angle, 3));
-    bullets[bullets.length-1].width *= 4;
-    bullets[bullets.length-1].height *= 4;
-}
+    bullets.push(new Bullet(this.x, this.y, this.shootSpeed * 0.6, this.angle, 3));
+    bullets[bullets.length - 1].width *= 4;
+    bullets[bullets.length - 1].height *= 4;
+};
 
 function updateEnemies() {
     for (var enemy in enemies) {
