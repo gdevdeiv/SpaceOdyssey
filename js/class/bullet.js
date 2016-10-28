@@ -26,7 +26,7 @@ Bullet.prototype.update = function() {
         this.x += Math.cos(this.angle) * this.speed;
         this.y += Math.sin(this.angle) * this.speed;
     }
-    if (this.type == 3) {
+    if (this.type === 3) {
         var incrementx = player.x - this.x;
         var incrementy = player.y - this.y;
         this.angle = Math.atan(incrementy / incrementx);
@@ -36,8 +36,8 @@ Bullet.prototype.update = function() {
         if (incrementx > 0 && incrementy < 0) { // cuarto cuadrante
             this.angle -= 2 * Math.PI;
         }
-        this.y += this.speed*Math.sin(this.angle);
-        this.x += this.speed*Math.cos(this.angle);
+        this.y += this.speed * Math.sin(this.angle);
+        this.x += this.speed * Math.cos(this.angle);
         this.width -= 0.2;
         this.height -= 0.2;
         if (this.width <=0) {
@@ -47,10 +47,10 @@ Bullet.prototype.update = function() {
 
     if (this.type === 0) {
         for (var enemy in enemies) {
-            if (this.x + this.width/2 > enemies[enemy].x - enemies[enemy].width/2 &&
-                this.x -this.width/2< enemies[enemy].x + enemies[enemy].width/2 &&
-                this.y + this.height/2 > enemies[enemy].y-enemies[enemy].height/2 &&
-                this.y -this.height/2< enemies[enemy].y + enemies[enemy].height/2
+            if (this.x + this.width / 2 > enemies[enemy].x - enemies[enemy].width / 2 &&
+                this.x -this.width / 2 < enemies[enemy].x + enemies[enemy].width / 2 &&
+                this.y + this.height / 2 > enemies[enemy].y - enemies[enemy].height / 2 &&
+                this.y -this.height / 2 < enemies[enemy].y + enemies[enemy].height / 2
             ) {
                 var rand = Math.random();
                 if (rand > 0.95) {
@@ -66,14 +66,14 @@ Bullet.prototype.update = function() {
             }
         }
     } 
-    if(this.type !== 0) {
+    if (this.type !== 0) {
         if (gameOver) {
             return;
         }
-        if (this.x + this.width/2 > player.x -player.width/2 &&
-            this.x -this.width/2 < player.x + player.width/2 &&
-            this.y + this.height/2 > player.y - player.height/2 &&
-            this.y -this.height/2 < player.y + player.height/2
+        if (this.x + this.width / 2 > player.x - player.width / 2 &&
+            this.x -this.width / 2 < player.x + player.width / 2 &&
+            this.y + this.height / 2 > player.y - player.height / 2 &&
+            this.y -this.height / 2 < player.y + player.height / 2
         ) {
             audio.playBoom();
             player.removeScore(150);
