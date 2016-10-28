@@ -1,4 +1,4 @@
-var Asteroid = function(x,y,speed,angle,size){
+var Asteroid = function(x,y,speed,angle,size,directionx,directiony){
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -7,9 +7,9 @@ var Asteroid = function(x,y,speed,angle,size){
     this.img = new Image();
     this.img.src = "img/aestroid/aestroid_brown.png";
     this.width = player.width*2/size;
-    this.heigth = player.height*2/size;
-    this.directionx = "right";
-    this.directiony = "down";
+    this.height = player.height*2/size;
+    this.directionx = directionx;
+    this.directiony = directiony;
 }
 
 Asteroid.prototype.tick = function() {
@@ -18,7 +18,7 @@ Asteroid.prototype.tick = function() {
 }
 
 Asteroid.prototype.render = function() {
-    drawRotatedImage(this.img, this.x, this.y, this.width, this.heigth, this.angle);
+    drawRotatedImage(this.img, this.x, this.y, this.width, this.height, this.angle);
 }
 
 Asteroid.prototype.update = function() {
@@ -46,7 +46,7 @@ Asteroid.prototype.update = function() {
 }
 
 function spawnAsteroid (){
-    asteroids.push(new Asteroid(10,10,1,0,1));
+    asteroids.push(new Asteroid(10,10,1,0,1,"right","down"));
 }
 
 function updateAsteroids() {

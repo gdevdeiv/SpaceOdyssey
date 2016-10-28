@@ -69,11 +69,13 @@ Bullet.prototype.update = function() {
 
 
         for (var asteroid in asteroids) {
+            console.log(asteroids[asteroid].height)
             if (this.x + this.width / 2 > asteroids[asteroid].x - asteroids[asteroid].width / 2 &&
                 this.x -this.width / 2 < asteroids[asteroid].x + asteroids[asteroid].width / 2 &&
                 this.y + this.height / 2 > asteroids[asteroid].y - asteroids[asteroid].height / 2 &&
                 this.y -this.height / 2 < asteroids[asteroid].y + asteroids[asteroid].height / 2
             ) {
+                console.log("pum");
                 var rand = Math.random();
                 if (rand > 0.95) {
                     items.push(new Item(asteroids[asteroid].x, asteroids[asteroid].y, "energy"));
@@ -82,7 +84,10 @@ Bullet.prototype.update = function() {
                 }
                 audio.playBoom();
                 player.addScore(50);
-                asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,asteroids[asteroid].size+1));
+                if(asteroids[asteroid].size < 4){
+                    asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"right","up"));
+                    asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"left","down"));
+                }
                 asteroids.splice(asteroid, 1);
                 
                 bullets.splice(positionInArray, 1);
