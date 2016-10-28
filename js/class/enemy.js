@@ -41,15 +41,15 @@ Enemy.prototype.update = function() {
     var _dy = player.y - this.y;
     this.angle = Math.atan2(_dy, _dx);
     if (ticks % (Math.round(Math.random() * 50) + 150) === 0) {
-        this.shoot();
+        this.shootSimple();
     }
     if (ticks % (Math.round(Math.random() * 50) + 200) === 0) {
-        this.shoot2();
+        this.shootRadial();
     }
     if (ticks % (Math.round(Math.random() * 50) + 300) === 0) {
-        this.shoot3();
+        this.shootFollower();
     }
-    if(!player.inmune){
+    if (!player.inmune) {
         if (this.x + this.width / 2 > player.x - player.width / 2 &&
             this.x -this.width / 2 < player.x + player.width / 2 &&
             this.y + this.height / 2 > player.y - player.height / 2 &&
@@ -61,26 +61,25 @@ Enemy.prototype.update = function() {
             enemies.splice(positionInArray, 1);
             player.inmune = true;
             clearTimeout(counterInmunity);
-            counterInmunity = setTimeout("player.inmune = false",player.inmuneTime);
+            counterInmunity = setTimeout(function() {
+                player.inmune = false;
+            }, player.inmuneTime);
         }
     }
 };
 
-// Simple shot.
-Enemy.prototype.shoot = function() {
-    bullets.push(new Bullet(this.x, this.y, this.shootSpeed, this.angle, 1));
+Enemy.prototype.shootSimple = function() {
+    bullets.push(new BulletSimple(this.x, this.y, this.shootSpeed, this.angle));
 };
 
-// Radial shot.
-Enemy.prototype.shoot2 = function() {
+Enemy.prototype.shootRadial = function() {
     for (var i = 0; i < 16; i++) {
-        bullets.push(new Bullet(this.x, this.y, this.shootSpeed * 0.6, i * (Math.PI / 8), 2));
+        bullets.push(new BulletRadial(this.x, this.y, this.shootSpeed * 0.6, i * (Math.PI / 8)));
     }
 };
 
-// Follower shot.
-Enemy.prototype.shoot3 = function(){
-    bullets.push(new Bullet(this.x, this.y, this.shootSpeed * 0.6, this.angle, 3));
+Enemy.prototype.shootFollower = function(){
+    bullets.push(new BulletFollower(this.x, this.y, this.shootSpeed * 0.6, this.angle));
     bullets[bullets.length - 1].width *= 4;
     bullets[bullets.length - 1].height *= 4;
 };
