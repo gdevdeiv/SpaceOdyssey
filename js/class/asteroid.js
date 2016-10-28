@@ -58,7 +58,6 @@ Asteroid.prototype.update = function() {
         }
     }
 }
-
 function spawnAsteroid (){
     asteroids.push(new Asteroid(10,10,1,0,1,"right","down"));
 }
