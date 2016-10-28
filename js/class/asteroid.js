@@ -10,6 +10,8 @@ var Asteroid = function(x,y,speed,angle,size,directionx,directiony){
     this.height = player.height*2/size;
     this.directionx = directionx;
     this.directiony = directiony;
+    this.randomx = Math.random()*2+1;
+    this.randomy = Math.random()*2+1;
 }
 
 Asteroid.prototype.tick = function() {
@@ -25,24 +27,36 @@ Asteroid.prototype.update = function() {
     this.angle += 0.05;
     switch (this.directionx){
         case "right":
-            this.x += this.speed
+            this.x += this.speed*this.randomx
             break;
         case "left":
-            this.x -= this.speed
+            this.x -= this.speed*this.randomx
             break;
     }
     switch (this.directiony){
         case "up":
-            this.y -= this.speed
+            this.y -= this.speed*this.randomy
             break;
         case "down":
-            this.y += this.speed
+            this.y += this.speed*this.randomy
             break;
     }
-    if(this.x < 0){this.directionx = "right";}
-    if(this.x > window.innerWidth){this.directionx = "left";}
-    if(this.y < 0){this.directiony = "down";}
-    if(this.y > window.innerHeight){this.directiony = "up"}
+    if(!player.inmune){
+        if(this.x < 0){this.directionx = "right";}
+        if(this.x > window.innerWidth){this.directionx = "left";}
+        if(this.y < 0){this.directiony = "down";}
+        if(this.y > window.innerHeight){this.directiony = "up"}
+        if(this.x + this.width/2 > player.x - player.width/2 &&
+        this.x - this.width/2 < player.x - player.width/2 &&
+        this.y + this.height/2 > player.y - player.height/2&&
+        this.y - this.height/2 < player.y + player.height/2){
+            player.energy--;
+            audio.playBoom();
+            player.inmune = true;
+            clearTimeout(counterInmunity);
+            counterInmunity = setTimeout("player.inmune = false",player.inmuneTime);
+        }
+    }
 }
 
 function spawnAsteroid (){

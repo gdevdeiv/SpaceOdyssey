@@ -2,6 +2,7 @@ var temp;
 var fps = 60;
 var gameOver = false;
 var ticks = 0;
+var counterInmunity = ""
 
 var player;
 var stars = new Stars();

@@ -20,6 +20,8 @@ var Player = function(animation) {
     this.ammo = 40;
     this.maxAmmo = 40;
     this.shootSpeed = 10;
+    this.inmune = false;
+    this.inmuneTime = 1000;
 };
 
 Player.prototype.tick = function() {

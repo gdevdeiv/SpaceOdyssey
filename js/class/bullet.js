@@ -75,7 +75,6 @@ Bullet.prototype.update = function() {
                 this.y + this.height / 2 > asteroids[asteroid].y - asteroids[asteroid].height / 2 &&
                 this.y -this.height / 2 < asteroids[asteroid].y + asteroids[asteroid].height / 2
             ) {
-                console.log("pum");
                 var rand = Math.random();
                 if (rand > 0.95) {
                     items.push(new Item(asteroids[asteroid].x, asteroids[asteroid].y, "energy"));
@@ -102,15 +101,20 @@ Bullet.prototype.update = function() {
         if (gameOver) {
             return;
         }
-        if (this.x + this.width / 2 > player.x - player.width / 2 &&
-            this.x -this.width / 2 < player.x + player.width / 2 &&
-            this.y + this.height / 2 > player.y - player.height / 2 &&
-            this.y -this.height / 2 < player.y + player.height / 2
-        ) {
-            audio.playBoom();
-            player.removeScore(150);
-            player.removeEnergy(1);
-            bullets.splice(positionInArray, 1);
+        if(!player.inmune){
+            if (this.x + this.width / 2 > player.x - player.width / 2 &&
+                this.x -this.width / 2 < player.x + player.width / 2 &&
+                this.y + this.height / 2 > player.y - player.height / 2 &&
+                this.y -this.height / 2 < player.y + player.height / 2
+            ) {
+                audio.playBoom();
+                player.removeScore(150);
+                player.removeEnergy(1);
+                bullets.splice(positionInArray, 1);
+                player.inmune = true;
+                clearTimeout(counterInmunity);
+                counterInmunity = setTimeout("player.inmune = false",player.inmuneTime);
+            }
         }
     }
 };
