@@ -10,3 +10,4 @@
 - Ideas del R-Type
 - Parpadeo con el daño
 - IA aliada
+- Retorcar gravedad y aceleración, junto con el Math.lerp
