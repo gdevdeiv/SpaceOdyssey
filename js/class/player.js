@@ -61,6 +61,9 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.shoot = function() {
+    if (gameOver) {
+        return;
+    }
     if (this.removeAmmo(1)) {
         bullets.push(new Bullet(this.x+75*Math.cos(this.angle) , this.y+75*Math.sin(this.angle) , this.shootSpeed, this.angle, 0));
     }
