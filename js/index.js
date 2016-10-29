@@ -37,12 +37,8 @@ $(document).ready(function() {
 });
 
 var fMenuLoop = function() {
-    if (ticks % 4 === 0) {
-        resizeCanvas();
-        stars.tick();
-    } else {
-        clearCanvas();
-    }
+    resizeCanvas();
+    stars.tick();
     clearTimeout(temp);
     temp = setTimeout(fMenuLoop, (1 / fps) * 1000);
 };
@@ -50,21 +46,18 @@ var fMenuLoop = function() {
 function start() {
     spawnPlayer();
     spawnAsteroid();
-    audio = new GameAudio()
+    audio = new GameAudio();
     audio.init();
-    input = new GameInput()
+    input = new GameInput();
     input.init();
     console.log("%cLoaded. Running at " + fps + " FPS.", "font-weight:bold");
+    ticks = 0;
     temp = setTimeout(fLoop, (1 / fps) * 1000);
 }
 
 var fLoop = function() {
-    if (ticks % 4 === 0) {
-        resizeCanvas();
-        stars.tick();
-    } else {
-        clearCanvas();
-    }
+    resizeCanvas();
+    stars.tick();
 
     if (ticks % 140 === 0) {
         spawnEnemy();

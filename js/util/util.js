@@ -1,5 +1,7 @@
 var TO_RADIANS = Math.PI / 180;
 var TO_DEGREES = 180 / Math.PI;
+var dot = new Image();
+dot.src = "img/dot2.png";
 
 Math.lerp = function (a, b, n) {
 	n = n < 0 ? 0 : n;
@@ -21,7 +23,6 @@ function drawRotatedImage(img, x, y, width, height, angle) {
 
 function clearCanvas() {
 	context.clearRect(0, 0, width, height);
-	
 }
 
 function resizeCanvas() {
