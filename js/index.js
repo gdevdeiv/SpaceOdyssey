@@ -57,7 +57,7 @@ function start() {
 var fLoop = function() {
     resizeCanvas();
     stars.tick();
-
+    
     updateBullets();
     updateEnemies();
     if (!gameOver) {
