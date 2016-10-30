@@ -1,6 +1,6 @@
-var Enemy = function(animation) {
-    this.x = width - (Math.random() * 350);
-    this.y = height - (Math.random() * height);
+var Enemy = function(x,y,animation) {
+    this.x = x /*width - (Math.random() * 350);*/
+    this.y = y /*height - (Math.random() * height);*/
     this.speedX = Math.ceil(Math.random() * 3);
     this.speedY = Math.ceil(Math.random() * 3);
     this.angle = 0;
@@ -59,4 +59,17 @@ function spawnEnemyFollower() {
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
     enemies.push(new EnemyFollower(animation));
+}
+
+function spawnEnemyParabolic() {
+    var animation = new Animation();
+    animation.addSprite(new Sprite("img/red/enemy/1.png"));
+    animation.addSprite(new Sprite("img/red/enemy/2.png"));
+    animation.addSprite(new Sprite("img/red/enemy/3.png"));
+    animation.addSprite(new Sprite("img/red/enemy/4.png"));
+    animation.addSprite(new Sprite("img/red/enemy/5.png"));
+    animation.addSprite(new Sprite("img/red/enemy/6.png"));
+    animation.addSprite(new Sprite("img/red/enemy/7.png"));
+    animation.addSprite(new Sprite("img/red/enemy/8.png"));
+    enemies.push(new EnemyParabolic(0,0,1,-Math.PI/6,animation));
 }

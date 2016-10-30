@@ -60,7 +60,7 @@ var fLoop = function() {
     stars.tick();
 
     if (ticks % 140 === 0) {
-        spawnEnemyFollower();
+        spawnEnemyParabolic();
     }
 
     updateBullets();
