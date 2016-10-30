@@ -1,11 +1,11 @@
-var EnemyParabolic = function(x, y, speed, angle, angularSpeed, animation) {
+var EnemyWave = function(x, y, speed, angle, angularSpeed, animation) {
     Enemy.call(this, x, y, speed, angle, animation);
 };
 
-EnemyParabolic.prototype = Object.create(Enemy.prototype);
-EnemyParabolic.prototype.constructor = EnemyParabolic;
+EnemyWave.prototype = Object.create(Enemy.prototype);
+EnemyWave.prototype.constructor = EnemyWave;
 
-EnemyParabolic.prototype.update = function() {
+EnemyWave.prototype.update = function() {
     Enemy.prototype.update.call(this);
     this.x += this.speed*Math.cos(this.angle);
     this.y += this.speed*Math.sin(this.angle);
