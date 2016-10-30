@@ -20,7 +20,6 @@ Enemy.prototype.tick = function() {
 Enemy.prototype.update = function() {
    if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
         enemies.splice(enemies.indexOf(this), 1);
-        enemiesLeft--;
    }
    if (!player.inmune) {
         if (this.x + this.width / 2 > player.x - player.width / 2 &&
@@ -32,7 +31,6 @@ Enemy.prototype.update = function() {
             player.removeScore(150);
             player.removeEnergy(1);
             enemies.splice(enemies.indexOf(this), 1);
-            enemiesLeft--;
             player.inmune = true;
             clearTimeout(counterInmunity);
             counterInmunity = setTimeout(function() {

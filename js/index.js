@@ -5,7 +5,6 @@ var ticks = 0;
 var counterInmunity;
 
 var round = 0;
-var enemiesLeft = 0;
 
 var player;
 var stars = new Stars();

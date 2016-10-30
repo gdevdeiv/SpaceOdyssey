@@ -35,16 +35,14 @@ function resizeCanvas() {
 }
 
 function checkRound() {
-	if (enemiesLeft !== 0) {
+	if (enemies.length > 0) {
 		return;
 	}
 	nextRound();
-	console.log("Next round!");
 }
 
 function nextRound() {
 	round++;
-	enemiesLeft = 6;
 	$("#round").html("<h1>Round " + round + "</h1>").fadeIn("slow", function() {
 		setTimeout(function() {
 			$("#round").fadeOut("slow", function() {
