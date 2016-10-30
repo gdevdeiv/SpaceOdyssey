@@ -33,3 +33,20 @@ function resizeCanvas() {
 	bgCanvas.width = width;
 	bgCanvas.height = height;
 }
+
+function nextRound() {
+	if (enemies.length > 0 || roundStarted) {
+		return;
+	}
+	// TODO: Populate enemies array with new enemies.
+	console.log("New round!");
+	round++;
+	roundStarted = true;
+	$("#round").html("<h1>Round " + round + "</h1>").fadeIn("slow", function() {
+		setTimeout(function() {
+			$("#round").fadeOut("slow", function() {
+				console.log("TEST");
+			});
+		}, 2000);
+	});
+}
