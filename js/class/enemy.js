@@ -18,7 +18,7 @@ Enemy.prototype.tick = function() {
 };
 
 Enemy.prototype.update = function() {
-   if (this.posx < 0 || this.posx > width || this.posy < 0 || this.posy > height) {
+   if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
         enemies.splice(enemies.indexOf(this), 1);
         enemiesLeft--;
    }
