@@ -49,7 +49,7 @@ function nextRound() {
 	$("#round").html("<h1>Round " + round + "</h1>").fadeIn("slow", function() {
 		setTimeout(function() {
 			$("#round").fadeOut("slow", function() {
-				spawnEnemyParabolic(6);
+				spawnEnemyWave(6);
 			});
 		}, 2000);
 	});

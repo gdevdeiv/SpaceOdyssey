@@ -20,7 +20,7 @@ BulletFollower.prototype.update = function() {
     this.x += this.speed * Math.cos(this.angle);
     this.width -= 0.2;
     this.height -= 0.2;
-    if (this.width <= 50) {
+    if (this.width <= player.width / 1.5) {
         console.log("hola")
         this.destroyBullet(this);
     }
