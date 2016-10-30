@@ -44,10 +44,10 @@ Player.prototype.update = function() {
     this.x += this.speedX;
     this.y += this.speedY;
     // Limiting to canvas width and height.
-    if (this.x < 0) { this.x = 0; }
-    if (this.x > (width - this.width)) { this.x = (width - this.width); }
-    if (this.y < 0) { this.y = 0; }
-    if (this.y > (height - this.height)) { this.y = (height - this.height); }
+    if (this.x < (this.width / 2)) { this.x = (this.width / 2); }
+    if (this.x > width - (this.width / 2)) { this.x = width - (this.width / 2); }
+    if (this.y < (this.height / 2)) { this.y = (this.height / 2); }
+    if (this.y > height - (this.height / 2)) { this.y = height - (this.height / 2); }
     // Sprite update.
     if (ticks % this.animation.getUpdateFrequency() === 0) {
         this.animation.tick();
