@@ -31,6 +31,7 @@ Enemy.prototype.update = function() {
             player.removeScore(150);
             player.removeEnergy(1);
             enemies.splice(enemies.indexOf(this), 1);
+            enemiesLeft--;
             player.inmune = true;
             clearTimeout(counterInmunity);
             counterInmunity = setTimeout(function() {
