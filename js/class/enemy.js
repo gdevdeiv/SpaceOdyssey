@@ -97,3 +97,16 @@ var fSpawnEnemyParabolic = function() {
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
     enemies.push(new EnemyParabolic(20, 20, 5, Math.PI / 6, 0.02, animation));
 };
+
+var SpawnEnemyWave = function() {
+    var animation = new Animation();
+    animation.addSprite(new Sprite("img/red/enemy/1.png"));
+    animation.addSprite(new Sprite("img/red/enemy/2.png"));
+    animation.addSprite(new Sprite("img/red/enemy/3.png"));
+    animation.addSprite(new Sprite("img/red/enemy/4.png"));
+    animation.addSprite(new Sprite("img/red/enemy/5.png"));
+    animation.addSprite(new Sprite("img/red/enemy/6.png"));
+    animation.addSprite(new Sprite("img/red/enemy/7.png"));
+    animation.addSprite(new Sprite("img/red/enemy/8.png"));
+    enemies.push(new EnemyWave(20, 20, 5, Math.PI / 6, 0.02, animation));
+};
