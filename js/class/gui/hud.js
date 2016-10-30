@@ -2,6 +2,7 @@ function updateHud() {
     updateEnergy();
     updateAmmo();
     updateScore();
+    updateRoundInfo();
 }
 
 function updateEnergy() {
@@ -40,4 +41,11 @@ function renderGameOverScreen() {
     context.fillText('Game Over!', (width / 2) - (context.measureText("Game Over!").width / 2), height / 2);
     context.font = "48px '8bitOperatorBold'";
     context.fillText('Score: ' + player.getScore(), (width / 2) - (context.measureText("Score: " + player.getScore()).width / 2), (height / 2) + 60);
+}
+
+function updateRoundInfo() {
+    var text = "Round " + round;
+    context.fillStyle = "white";
+    context.font = "32px '8bitOperatorBold'";
+    context.fillText(text, 20, height - 20);
 }
