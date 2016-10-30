@@ -63,9 +63,9 @@ var fLoop = function() {
 
     checkRound();
 
-    if (ticks % 100 === 0) {
+    /*if (ticks % 100 === 0) {
         spawnEnemyFollower();
-    }
+    }*/
 
     updateBullets();
     updateEnemies();

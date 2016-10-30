@@ -27,18 +27,18 @@ Asteroid.prototype.update = function() {
     this.angle += 0.05;
     switch (this.directionx){
         case "right":
-            this.x += this.speed*this.randomx
+            this.x += this.speed*this.randomx;
             break;
         case "left":
-            this.x -= this.speed*this.randomx
+            this.x -= this.speed*this.randomx;
             break;
     }
     switch (this.directiony){
         case "up":
-            this.y -= this.speed*this.randomy
+            this.y -= this.speed*this.randomy;
             break;
         case "down":
-            this.y += this.speed*this.randomy
+            this.y += this.speed*this.randomy;
             break;
     }
     if(!player.inmune){
@@ -54,7 +54,9 @@ Asteroid.prototype.update = function() {
             audio.playBoom();
             player.inmune = true;
             clearTimeout(counterInmunity);
-            counterInmunity = setTimeout("player.inmune = false",player.inmuneTime);
+            counterInmunity = setTimeout(function() {
+                player.inmune = false;
+            }, player.inmuneTime);
         }
     }
 }

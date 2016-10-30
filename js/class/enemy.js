@@ -18,9 +18,9 @@ Enemy.prototype.tick = function() {
 };
 
 Enemy.prototype.update = function() {
-   if (this.posx < 0 || this.posx > width || this.posy < 0 || this.posy > height){
-        var positionInArray = enemies.indexOf(this);
-        enemies.splice(this, 1);
+   if (this.posx < 0 || this.posx > width || this.posy < 0 || this.posy > height) {
+        enemies.splice(enemies.indexOf(this), 1);
+        enemiesLeft--;
    }
    if (!player.inmune) {
         if (this.x + this.width / 2 > player.x - player.width / 2 &&
@@ -78,7 +78,7 @@ function spawnEnemyFollower() {
     animation.addSprite(new Sprite("img/red/enemy/6.png"));
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
-    enemies.push(new EnemyFollower(300,300,3,10,animation));
+    enemies.push(new EnemyFollower(300, 300, 3, 10, animation));
 }
 
 function spawnEnemyParabolic(n) {
@@ -98,4 +98,4 @@ var fSpawnEnemyParabolic = function() {
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
     enemies.push(new EnemyParabolic(20, 20, 5, Math.PI / 6, animation));
-}
+};
