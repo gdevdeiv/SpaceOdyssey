@@ -90,5 +90,5 @@ function spawnEnemyParabolic() {
     animation.addSprite(new Sprite("img/red/enemy/6.png"));
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
-    enemies.push(new EnemyParabolic(20, 20, 5, Math.PI / 6, animation));
+    enemies.push(new EnemyParabolic(20, 20, 5, Math.PI / 6, 0.02, animation));
 }
