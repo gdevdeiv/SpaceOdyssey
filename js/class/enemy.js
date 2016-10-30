@@ -1,4 +1,4 @@
-var Enemy = function(x,y,animation) {
+var Enemy = function(x,y,speed,angle,animation) {
     this.x = x /*width - (Math.random() * 350);*/
     this.y = y /*height - (Math.random() * height);*/
     this.speedX = Math.ceil(Math.random() * 3);
