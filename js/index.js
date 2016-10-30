@@ -45,7 +45,6 @@ var fMenuLoop = function() {
 
 function start() {
     spawnPlayer();
-    spawnAsteroid();
     audio = new GameAudio();
     audio.init();
     input = new GameInput();
@@ -58,11 +57,15 @@ function start() {
 var fLoop = function() {
     resizeCanvas();
     stars.tick();
+<<<<<<< HEAD
 
     if (ticks % 140 === 0) {
         spawnEnemyParabolic();
     }
 
+=======
+    
+>>>>>>> 58cfb9eaa00cf865e89df33cecae5b05c4695870
     updateBullets();
     updateEnemies();
     if (!gameOver) {

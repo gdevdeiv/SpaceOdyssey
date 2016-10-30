@@ -26,20 +26,41 @@ Stars.prototype.tick = function() {
     for (var layer in this.layers) {
         for (var stars in this.layers[layer]) {
             var star = this.layers[layer][stars];
-            if (this.inBounds(star.x, star.y)) {
-                /*star.x += star.speedX + (player.movementX * (star.speedX / 2));
-                star.y += star.speedY + (player.movementY * (star.speedY / 2));*/
+            if (this.inBoundsX(star.x)) {
+                if (player !== undefined) {
+                    star.x += star.speedX - (player.movementX * 0.4);
+                }
                 star.x += star.speedX;
+            } else {
+                if (star.x <= 0) {
+                    star.x = width - 1;
+                }
+                if (star.x >= width) {
+                    star.x = 1;
+                }
+            }
+            if (this.inBoundsY(star.y)) {
+                if (player !== undefined) {
+                    star.y += star.speedY - (player.movementY * 0.4);
+                }
                 star.y += star.speedY;
             } else {
-                star.x = Math.random() * width;
-                star.y = 1;
+                if (star.y <= 0) {
+                    star.y = height - 1;
+                }
+                if (star.y >= height) {
+                    star.y = 1;
+                }
             }
             context.drawImage(dot, star.x, star.y, star.radius, star.radius);
         }
     }
 };
 
-Stars.prototype.inBounds = function(x, y) {
-    return ((x > 0 && x < width) && (y > 0 && y < height));
+Stars.prototype.inBoundsX = function(x) {
+    return (x > 0 && x < width);
+};
+
+Stars.prototype.inBoundsY = function(y) {
+    return (y > 0 && y < height);
 };
