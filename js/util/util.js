@@ -39,6 +39,7 @@ function checkRound() {
 		return;
 	}
 	nextRound();
+	console.log("Next round!");
 }
 
 function nextRound() {

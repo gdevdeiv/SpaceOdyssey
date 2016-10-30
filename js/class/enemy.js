@@ -80,7 +80,13 @@ function spawnEnemyFollower() {
     enemies.push(new EnemyFollower(animation));
 }
 
-function spawnEnemyParabolic() {
+function spawnEnemyParabolic(n) {
+    for (var i = 0; i < n; i++) {
+        setTimeout(fSpawnEnemyParabolic, i * 1250);
+    }
+}
+
+var fSpawnEnemyParabolic = function() {
     var animation = new Animation();
     animation.addSprite(new Sprite("img/red/enemy/1.png"));
     animation.addSprite(new Sprite("img/red/enemy/2.png"));
