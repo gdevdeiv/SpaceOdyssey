@@ -1,5 +1,5 @@
 var EnemyFollower = function(x, y, speed, angle) {
-    Enemy.call(this, x, y, speed, angle, 3);
+    Enemy.call(this, x, y);
 };
 
 EnemyFollower.prototype = Object.create(Enemy.prototype);

@@ -62,7 +62,11 @@ var fLoop = function() {
     stars.tick();
 
     nextRound();
-    
+
+    if (ticks % 140 === 0) {
+        spawnEnemyParabolic();
+    }
+
     updateBullets();
     updateEnemies();
     if (!gameOver) {
