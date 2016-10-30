@@ -9,10 +9,11 @@ EnemyWave.prototype.update = function() {
     Enemy.prototype.update.call(this);
     this.x += this.speed*Math.cos(this.angle);
     this.y += this.speed*Math.sin(this.angle);
-    if (this.x > width*0.4){
-        if (this.angle > -Math.PI/6){
-            this.angle -= this.angularSpeed;
-        }
+    if(angle > Math.PI/2){
+        angularSpeed *= -1;
+    }
+    if(angle < -Math.PI/2){
+        angularSpeed *= -1;
     }
 
     if (ticks % this.animation.getUpdateFrequency() === 0) {
