@@ -11,7 +11,7 @@ EnemyParabolic.prototype.update = function() {
     this.y += this.speed*Math.sin(this.angle);
     if (this.x > width*0.4){
         if (this.angle > -Math.PI/6){
-            this.angle -= 0.01;
+            this.angle -= this.angularSpeed;
         }
     }
 

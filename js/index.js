@@ -67,6 +67,10 @@ var fLoop = function() {
         spawnEnemyParabolic();
     }
 
+    if (ticks % 100 === 0) {
+        spawnEnemyFollower();
+    }
+
     updateBullets();
     updateEnemies();
     if (!gameOver) {

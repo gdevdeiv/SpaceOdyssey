@@ -9,6 +9,7 @@ var Enemy = function(x, y, speed, angle, animation) {
     this.width = width / 20;
     this.height = width / 20;
     this.shootSpeed = 10;
+    this.angularSpeed = 0.02;
 }; 
 
 Enemy.prototype.tick = function() {
@@ -76,7 +77,7 @@ function spawnEnemyFollower() {
     animation.addSprite(new Sprite("img/red/enemy/6.png"));
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
-    enemies.push(new EnemyFollower(animation));
+    enemies.push(new EnemyFollower(300,300,3,10,animation));
 }
 
 function spawnEnemyParabolic() {
