@@ -3,7 +3,8 @@ var Enemy = function(x,y,speed,angle,animation) {
     this.y = y /*height - (Math.random() * height);*/
     this.speedX = Math.ceil(Math.random() * 3);
     this.speedY = Math.ceil(Math.random() * 3);
-    this.angle = 0;
+    this.speed = speed;
+    this.angle = angle;
     this.animation = animation;
     this.width = width / 20;
     this.height = width / 20;
@@ -71,5 +72,5 @@ function spawnEnemyParabolic() {
     animation.addSprite(new Sprite("img/red/enemy/6.png"));
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
-    enemies.push(new EnemyParabolic(0,0,1,-Math.PI/6,animation));
+    enemies.push(new EnemyParabolic(20,20,5,Math.PI/6,animation));
 }
