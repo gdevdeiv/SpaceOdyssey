@@ -29,14 +29,18 @@ canvas {
     background: #171717;
 }
 
-#menu {
+#round {
+    display: none;
+}
+
+#menu, #round {
     position: absolute;
     top: 30%;
     width: 100%;
     text-align: center;
 }
 
-#menu > h1 {
+#menu > h1, #round > h1 {
     font-family: '8bitOperatorBold';
     font-size: 96px;
     color: white;
