@@ -32,6 +32,7 @@ Enemy.prototype.update = function() {
             player.removeScore(150);
             player.removeEnergy(1);
             enemies.splice(enemies.indexOf(this), 1);
+            enemiesLeft--;
             player.inmune = true;
             clearTimeout(counterInmunity);
             counterInmunity = setTimeout(function() {
@@ -80,7 +81,13 @@ function spawnEnemyFollower() {
     enemies.push(new EnemyFollower(300,300,3,10,animation));
 }
 
-function spawnEnemyParabolic() {
+function spawnEnemyParabolic(n) {
+    for (var i = 0; i < n; i++) {
+        setTimeout(fSpawnEnemyParabolic, i * 1250);
+    }
+}
+
+var fSpawnEnemyParabolic = function() {
     var animation = new Animation();
     animation.addSprite(new Sprite("img/red/enemy/1.png"));
     animation.addSprite(new Sprite("img/red/enemy/2.png"));

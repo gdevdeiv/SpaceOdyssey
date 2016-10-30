@@ -5,7 +5,7 @@ var ticks = 0;
 var counterInmunity;
 
 var round = 0;
-var roundStarted = false;
+var enemiesLeft = 0;
 
 var player;
 var stars = new Stars();
@@ -61,11 +61,7 @@ var fLoop = function() {
     resizeCanvas();
     stars.tick();
 
-    nextRound();
-
-    if (ticks % 140 === 0) {
-        spawnEnemyParabolic();
-    }
+    checkRound();
 
     if (ticks % 100 === 0) {
         spawnEnemyFollower();

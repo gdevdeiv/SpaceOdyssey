@@ -34,18 +34,21 @@ function resizeCanvas() {
 	bgCanvas.height = height;
 }
 
-function nextRound() {
-	if (enemies.length > 0 || roundStarted) {
+function checkRound() {
+	if (enemiesLeft !== 0) {
 		return;
 	}
-	// TODO: Populate enemies array with new enemies.
-	console.log("New round!");
+	nextRound();
+	console.log("Next round!");
+}
+
+function nextRound() {
 	round++;
-	roundStarted = true;
+	enemiesLeft = 6;
 	$("#round").html("<h1>Round " + round + "</h1>").fadeIn("slow", function() {
 		setTimeout(function() {
 			$("#round").fadeOut("slow", function() {
-				console.log("TEST");
+				spawnEnemyParabolic(6);
 			});
 		}, 2000);
 	});
