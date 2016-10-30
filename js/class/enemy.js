@@ -1,6 +1,6 @@
-var Enemy = function(x,y,speed,angle,animation) {
-    this.x = x /*width - (Math.random() * 350);*/
-    this.y = y /*height - (Math.random() * height);*/
+var Enemy = function(x, y, speed, angle, animation) {
+    this.x = x;
+    this.y = y;
     this.speedX = Math.ceil(Math.random() * 3);
     this.speedY = Math.ceil(Math.random() * 3);
     this.speed = speed;
@@ -17,10 +17,27 @@ Enemy.prototype.tick = function() {
 };
 
 Enemy.prototype.update = function() {
-   if(this.posx < 0 || this.posx > width || this.posy < 0 || this.posy > height){
+   if (this.posx < 0 || this.posx > width || this.posy < 0 || this.posy > height){
         var positionInArray = enemies.indexOf(this);
         enemies.splice(this, 1);
    }
+   if (!player.inmune) {
+        if (this.x + this.width / 2 > player.x - player.width / 2 &&
+            this.x - this.width / 2 < player.x + player.width / 2 &&
+            this.y + this.height / 2 > player.y - player.height / 2 &&
+            this.y - this.height / 2 < player.y + player.height / 2
+        ) {
+            audio.playBoom();
+            player.removeScore(150);
+            player.removeEnergy(1);
+            enemies.splice(enemies.indexOf(this), 1);
+            player.inmune = true;
+            clearTimeout(counterInmunity);
+            counterInmunity = setTimeout(function() {
+                player.inmune = false;
+            }, player.inmuneTime);
+        }
+    }
 };
 
 Enemy.prototype.render = function() {
@@ -72,5 +89,5 @@ function spawnEnemyParabolic() {
     animation.addSprite(new Sprite("img/red/enemy/6.png"));
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
-    enemies.push(new EnemyParabolic(20,20,5,Math.PI/6,animation));
+    enemies.push(new EnemyParabolic(20, 20, 5, Math.PI / 6, animation));
 }

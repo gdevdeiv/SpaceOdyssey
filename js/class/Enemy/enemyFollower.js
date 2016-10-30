@@ -1,5 +1,5 @@
-var EnemyFollower = function(x, y, speed, angle) {
-    Enemy.call(this, x, y);
+var EnemyFollower = function(x, y, speed, angle, animation) {
+    Enemy.call(this, x, y, speed, angle, animation);
 };
 
 EnemyFollower.prototype = Object.create(Enemy.prototype);
@@ -7,8 +7,6 @@ EnemyFollower.prototype.constructor = EnemyFollower;
 
 EnemyFollower.prototype.update = function() {
     Enemy.prototype.update.call(this);
-    var positionInArray = enemies.indexOf(this);
-
     this.x -= this.speedX;
     if (this.x > player.x) {
         if (this.y > player.y) {
@@ -33,22 +31,5 @@ EnemyFollower.prototype.update = function() {
     }
     if (ticks % (Math.round(Math.random() * 50) + 300) === 0) {
         this.shootFollower();
-    }
-    if (!player.inmune) {
-        if (this.x + this.width / 2 > player.x - player.width / 2 &&
-            this.x - this.width / 2 < player.x + player.width / 2 &&
-            this.y + this.height / 2 > player.y - player.height / 2 &&
-            this.y - this.height / 2 < player.y + player.height / 2
-        ) {
-            audio.playBoom();
-            player.removeScore(150);
-            player.removeEnergy(1);
-            enemies.splice(positionInArray, 1);
-            player.inmune = true;
-            clearTimeout(counterInmunity);
-            counterInmunity = setTimeout(function() {
-                player.inmune = false;
-            }, player.inmuneTime);
-        }
     }
 };
