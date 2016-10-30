@@ -42,6 +42,9 @@ function checkRound() {
 }
 
 function nextRound() {
+	doCheckRound = false;
+	clearTimeout(counterRound);
+	conunterRound = setTimeout("checkRoundAgain()",5000);
 	round++;
 	$("#round").html("<h1>Round " + round + "</h1>").fadeIn("slow", function() {
 		setTimeout(function() {
@@ -50,4 +53,8 @@ function nextRound() {
 			});
 		}, 2000);
 	});
+}
+
+function checkRoundAgain(){
+	doCheckRound = true;
 }

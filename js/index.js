@@ -5,6 +5,8 @@ var ticks = 0;
 var counterInmunity;
 
 var round = 0;
+var doCheckRound = true;
+var counterRound = "";
 
 var player;
 var stars = new Stars();
@@ -59,8 +61,9 @@ function start() {
 var fLoop = function() {
     resizeCanvas();
     stars.tick();
-
-    checkRound();
+    if(doCheckRound){
+        checkRound();
+    }
 
     /*if (ticks % 100 === 0) {
         spawnEnemyFollower();
