@@ -1,4 +1,4 @@
-var Asteroid = function(x, y, speed, angle, size, directionx, directiony){
+var Asteroid = function(x, y, speed, angle, size, directionx, directiony) {
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -6,12 +6,12 @@ var Asteroid = function(x, y, speed, angle, size, directionx, directiony){
     this.size = size;
     this.img = new Image();
     this.img.src = "img/aestroid/aestroid_brown.png";
-    this.width = player.width*2/size;
-    this.height = player.height*2/size;
+    this.width = player.width * 2 / size;
+    this.height = player.height * 2 / size;
     this.directionx = directionx;
     this.directiony = directiony;
-    this.randomx = Math.random()*2+1;
-    this.randomy = Math.random()*2+1;
+    this.randomx = Math.random() * 2 + 1;
+    this.randomy = Math.random() * 2 + 1;
 };
 
 Asteroid.prototype.tick = function() {
@@ -27,30 +27,31 @@ Asteroid.prototype.update = function() {
     this.angle += 0.05;
     switch (this.directionx){
         case "right":
-            this.x += this.speed*this.randomx;
+            this.x += this.speed * this.randomx;
             break;
         case "left":
-            this.x -= this.speed*this.randomx;
+            this.x -= this.speed * this.randomx;
             break;
     }
     switch (this.directiony){
         case "up":
-            this.y -= this.speed*this.randomy;
+            this.y -= this.speed * this.randomy;
             break;
         case "down":
-            this.y += this.speed*this.randomy;
+            this.y += this.speed * this.randomy;
             break;
     }
     if (!player.inmune){
-        if(this.x < 0){this.directionx = "right";}
-        if(this.x > window.innerWidth){this.directionx = "left";}
-        if(this.y < 0){this.directiony = "down";}
-        if(this.y > window.innerHeight){this.directiony = "up"}
-        if(this.x + this.width/2 > player.x - player.width/2 &&
-        this.x - this.width/2 < player.x - player.width/2 &&
-        this.y + this.height/2 > player.y - player.height/2&&
-        this.y - this.height/2 < player.y + player.height/2){
-            player.energy--;
+        if (this.x < 0) { this.directionx = "right"; }
+        if (this.x > window.innerWidth) { this.directionx = "left"; }
+        if (this.y < 0) { this.directiony = "down"; }
+        if (this.y > window.innerHeight) { this.directiony = "up"; }
+        if (this.x + this.width / 2 > player.x - player.width / 2 &&
+            this.x - this.width / 2 < player.x - player.width / 2 &&
+            this.y + this.height / 2 > player.y - player.height / 2 &&
+            this.y - this.height / 2 < player.y + player.height / 2
+        ) {
+            player.removeEnergy(1);
             audio.playBoom();
             player.inmune = true;
             clearTimeout(counterInmunity);
