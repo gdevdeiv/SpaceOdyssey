@@ -17,10 +17,10 @@ Enemy.prototype.tick = function() {
 };
 
 Enemy.prototype.update = function() {
-   if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+    if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
         enemies.splice(enemies.indexOf(this), 1);
-   }
-   if (!player.inmune) {
+    }
+    if (!player.inmune) {
         if (this.x + this.width / 2 > player.x - player.width / 2 &&
             this.x - this.width / 2 < player.x + player.width / 2 &&
             this.y + this.height / 2 > player.y - player.height / 2 &&
@@ -63,6 +63,10 @@ function updateEnemies() {
     for (var enemy in enemies) {
         enemies[enemy].tick();
     }
+}
+
+function clearEnemies() {
+    enemies = [];
 }
 
 function spawnEnemyFollower(n) {
