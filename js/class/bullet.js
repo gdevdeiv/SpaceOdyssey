@@ -5,16 +5,16 @@ var Bullet = function(x, y, speed, angle, type) {
     this.angle = angle;
     this.type = type; // 0-player, 1-bullet, 2-bullet2, 3-bullet3...
     this.img = new Image();
-    if(this.type === 0){
+    if (this.type === 0) {
         this.img.src = "img/blue/bullet.png";
     }
-    if(this.type === 1){
+    if (this.type === 1) {
         this.img.src = "img/red/bullet.png";
     }
-    if(this.type === 2){
+    if (this.type === 2) {
         this.img.src = "img/red/bullet-purple.png";
     }
-    if(this.type === 3){
+    if (this.type === 3) {
         this.img.src = "img/red/bullet-yellow.png";
     }
     this.width = player.width / 3;
@@ -97,7 +97,7 @@ Bullet.prototype.asteroidCollision = function() {
             }
             audio.playBoom();
             player.addScore(50);
-            if(asteroids[asteroid].size < 4){
+            if (asteroids[asteroid].size < 4) {
                 asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"right","up"));
                 asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"left","down"));
             }

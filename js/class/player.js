@@ -22,6 +22,7 @@ var Player = function(animation) {
     this.shootSpeed = 10;
     this.inmune = false;
     this.inmuneTime = 1000;
+    this.weapon = new WeaponBasic()
 };
 
 Player.prototype.tick = function() {
@@ -60,15 +61,20 @@ Player.prototype.update = function() {
 
 Player.prototype.render = function() {
     drawRotatedImage(this.animation.getActualSprite().getImg(), this.x, this.y, this.width, this.height, this.angle);
+    if (this.inmune) {
+        context.strokeStyle = 'white';
+        context.beginPath();
+            context.arc(this.x, this.y, this.width / 2, 0, 2 * Math.PI, true);
+            context.stroke();
+        context.closePath();
+    }
 };
 
 Player.prototype.shoot = function() {
     if (gameOver) {
         return;
     }
-    if (this.removeAmmo(1)) {
-        bullets.push(new BulletFriendly(this.x + 75 * Math.cos(this.angle), this.y + 75 * Math.sin(this.angle), this.shootSpeed, this.angle));
-    }
+    this.weapon.shoot();
 };
 
 Player.prototype.getScore = function() {
