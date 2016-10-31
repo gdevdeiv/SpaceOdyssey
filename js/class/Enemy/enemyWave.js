@@ -1,5 +1,6 @@
 var EnemyWave = function(x, y, speed, angle, angularSpeed, animation) {
-    Enemy.call(this, x, y, speed, angle, angularSpeed, animation);
+    Enemy.call(this, x, y, speed, angle, animation);
+    this.angularSpeed = angularSpeed;
 };
 
 EnemyWave.prototype = Object.create(Enemy.prototype);

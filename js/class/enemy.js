@@ -1,4 +1,4 @@
-var Enemy = function(x, y, speed, angle, angularSpeed, animation) {
+var Enemy = function(x, y, speed, angle, animation) {
     this.x = x;
     this.y = y;
     this.speedX = Math.ceil(Math.random() * 3);
@@ -9,7 +9,6 @@ var Enemy = function(x, y, speed, angle, angularSpeed, animation) {
     this.width = width / 20;
     this.height = width / 20;
     this.shootSpeed = 10;
-    this.angularSpeed = angularSpeed;
 }; 
 
 Enemy.prototype.tick = function() {
@@ -66,7 +65,25 @@ function updateEnemies() {
     }
 }
 
-function spawnEnemyFollower() {
+function spawnEnemyFollower(n) {
+    for (var i = 0; i < n; i++) {
+        setTimeout(fSpawnEnemyFollower, i * 1750);
+    }
+}
+
+function spawnEnemyParabolic(n) {
+    for (var i = 0; i < n; i++) {
+        setTimeout(fSpawnEnemyParabolic, i * 1250);
+    }
+}
+
+function spawnEnemyWave(n) {
+    for (var i = 0; i < n; i++) {
+        setTimeout(fSpawnEnemyWave, i * 2250);
+    }
+}
+
+var fSpawnEnemyFollower = function() {
     var animation = new Animation();
     animation.addSprite(new Sprite("img/red/enemy/1.png"));
     animation.addSprite(new Sprite("img/red/enemy/2.png"));
@@ -77,13 +94,7 @@ function spawnEnemyFollower() {
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
     enemies.push(new EnemyFollower(300, 300, 3, 10, animation));
-}
-
-function spawnEnemyParabolic(n) {
-    for (var i = 0; i < n; i++) {
-        setTimeout(fSpawnEnemyParabolic, i * 1250);
-    }
-}
+};
 
 var fSpawnEnemyParabolic = function() {
     var animation = new Animation();
@@ -97,12 +108,6 @@ var fSpawnEnemyParabolic = function() {
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
     enemies.push(new EnemyParabolic(20, 20, 5, Math.PI / 6, 0.02, animation));
 };
-
-function spawnEnemyWave(n) {
-    for (var i = 0; i < n; i++) {
-        setTimeout(fSpawnEnemyWave, i * 1250);
-    }
-}
 
 var fSpawnEnemyWave = function() {
     var animation = new Animation();

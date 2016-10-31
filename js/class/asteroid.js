@@ -1,4 +1,4 @@
-var Asteroid = function(x,y,speed,angle,size,directionx,directiony){
+var Asteroid = function(x, y, speed, angle, size, directionx, directiony){
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -12,16 +12,16 @@ var Asteroid = function(x,y,speed,angle,size,directionx,directiony){
     this.directiony = directiony;
     this.randomx = Math.random()*2+1;
     this.randomy = Math.random()*2+1;
-}
+};
 
 Asteroid.prototype.tick = function() {
     this.update();
     this.render();
-}
+};
 
 Asteroid.prototype.render = function() {
     drawRotatedImage(this.img, this.x, this.y, this.width, this.height, this.angle);
-}
+};
 
 Asteroid.prototype.update = function() {
     this.angle += 0.05;
@@ -41,7 +41,7 @@ Asteroid.prototype.update = function() {
             this.y += this.speed*this.randomy;
             break;
     }
-    if(!player.inmune){
+    if (!player.inmune){
         if(this.x < 0){this.directionx = "right";}
         if(this.x > window.innerWidth){this.directionx = "left";}
         if(this.y < 0){this.directiony = "down";}
@@ -59,13 +59,20 @@ Asteroid.prototype.update = function() {
             }, player.inmuneTime);
         }
     }
-}
-function spawnAsteroid (){
-    asteroids.push(new Asteroid(10,10,1,0,1,"right","down"));
-}
+};
 
 function updateAsteroids() {
     for (var asteroid in asteroids) {
         asteroids[asteroid].tick();
     }
 }
+
+function spawnAsteroid(n) {
+    for (var i = 0; i < n; i++) {
+        setTimeout(fSpawnAsteroid, i * 2500);
+    }
+}
+
+var fSpawnAsteroid = function() {
+    asteroids.push(new Asteroid(10, 10, 1, 0, 1, "right", "down"));
+};
