@@ -140,12 +140,12 @@ var fSpawnEnemyLaser = function() {
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
     var spawnPosition = Math.random();
     if (spawnPosition < 0.25) {             //case up
-        enemies.push(new EnemyLaser(20, height, 5, 0, "up", animation));
+        enemies.push(new EnemyLaser(height / 20, height, 5, 0, "up", animation));
     }else if(spawnPosition < 0.5) {         //case down
-        enemies.push(new EnemyLaser(20, 20, 5, 0, "down", animation));
+        enemies.push(new EnemyLaser(heigth / 20, 0, 5, 0, "down", animation));
     }else if(spawnPosition < 0.75) {        //case right
-        enemies.push(new EnemyLaser(20, 20, 5, -Math.PI/2, "right", animation));
+        enemies.push(new EnemyLaser(heigth / 20, heigth / 20, 5, Math.PI/2, "right", animation));
     }else{                                  //case left
-        enemies.push(new EnemyLaser(20, 20, 5, -Math.PI/2, "left", animation));
+        enemies.push(new EnemyLaser(width, height/20, 5, Math.PI/2, "left", animation));
     }
 };

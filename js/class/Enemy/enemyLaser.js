@@ -8,7 +8,7 @@ EnemyLaser.prototype.constructor = EnemyLaser;
 
 EnemyLaser.prototype.update = function() {
     Enemy.prototype.update.call(this);
-    switch (direction) {
+    switch (this.direction) {
         case "up" :
             this.y -= this.speed;
             break;
@@ -22,7 +22,7 @@ EnemyLaser.prototype.update = function() {
             this.x -= this.speed;
             break;
     }
-    if (ticks % (Math.round(Math.random() * 50) + 150) === 0) {
+    /*if (ticks % (Math.round(Math.random() * 50) + 150) === 0) {
         this.shootLaser();
-    }
+    }*/
 };
