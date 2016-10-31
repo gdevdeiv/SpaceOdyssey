@@ -6,6 +6,9 @@
  * Nivel 1
  *   Ronda 1
  *     Enemigos
+ *       EnemigosA: X
+ *       EnemigosB: y
+ *       EnemigosC: Z
  *     Asteroides
  *   Ronda 2
  *     ...
