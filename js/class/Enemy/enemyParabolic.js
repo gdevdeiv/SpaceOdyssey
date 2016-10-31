@@ -18,15 +18,17 @@ EnemyParabolic.prototype.update = function() {
     if (ticks % this.animation.getUpdateFrequency() === 0) {
         this.animation.tick();
     }
-    var _dx = player.x - this.x;
-    var _dy = player.y - this.y;
-    if (ticks % (Math.round(Math.random() * 50) + 150) === 0) {
-        this.shootSimple();
-    }
-    if (ticks % (Math.round(Math.random() * 50) + 200) === 0) {
-        this.shootRadial();
-    }
-    if (ticks % (Math.round(Math.random() * 50) + 300) === 0) {
-        this.shootFollower();
+    if (player !== undefined) {
+        var _dx = player.x - this.x;
+        var _dy = player.y - this.y;
+        if (ticks % (Math.round(Math.random() * 50) + 150) === 0) {
+            this.shootSimple();
+        }
+        if (ticks % (Math.round(Math.random() * 50) + 200) === 0) {
+            this.shootRadial();
+        }
+        if (ticks % (Math.round(Math.random() * 50) + 300) === 0) {
+            this.shootFollower();
+        }
     }
 };

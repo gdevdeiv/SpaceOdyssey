@@ -43,7 +43,7 @@ $(document).ready(function() {
 var fMenuLoop = function() {
     resizeCanvas();
     stars.tick();
-    /*if (ticks % 100 === 0) {
+    if (ticks % 100 === 0) {
         var rand = Math.random();
         if (rand > 0.4) {
             spawnEnemyWave(1);
@@ -52,7 +52,7 @@ var fMenuLoop = function() {
         }
     }
     updateEnemies();
-    ticks++;*/
+    ticks++;
     clearTimeout(temp);
     temp = setTimeout(fMenuLoop, (1 / fps) * 1000);
 };
