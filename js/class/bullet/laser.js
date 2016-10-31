@@ -1,4 +1,4 @@
-var BulletSimple = function(x, y, speed, angle, direction) {
+var BulletLaser = function(x, y, speed, angle, direction) {
     Bullet.call(this, x, y, speed, angle, 4);
 };
 
