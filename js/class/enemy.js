@@ -1,4 +1,4 @@
-var Enemy = function(x, y, speed, angle, animation) {
+var Enemy = function(x, y, speed, angle, angularSpeed, animation) {
     this.x = x;
     this.y = y;
     this.speedX = Math.ceil(Math.random() * 3);
@@ -9,7 +9,7 @@ var Enemy = function(x, y, speed, angle, animation) {
     this.width = width / 20;
     this.height = width / 20;
     this.shootSpeed = 10;
-    this.angularSpeed = 0.02;
+    this.angularSpeed = angularSpeed;
 }; 
 
 Enemy.prototype.tick = function() {
@@ -50,12 +50,12 @@ Enemy.prototype.shootSimple = function() {
 
 Enemy.prototype.shootRadial = function() {
     for (var i = 0; i < 16; i++) {
-        bullets.push(new BulletRadial(this.x, this.y, this.shootSpeed * 0.6, i * (Math.PI / 8)));
+        bullets.push(new BulletRadial(this.x, this.y, this.shootSpeed * 0.4, i * (Math.PI / 8)));
     }
 };
 
 Enemy.prototype.shootFollower = function() {
-    bullets.push(new BulletFollower(this.x, this.y, this.shootSpeed * 0.6, this.angle));
+    bullets.push(new BulletFollower(this.x, this.y, this.shootSpeed * 0.3, this.angle));
     bullets[bullets.length - 1].width *= 4;
     bullets[bullets.length - 1].height *= 4;
 };
@@ -102,4 +102,23 @@ var fSpawnEnemyParabolic = function() {
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
     enemies.push(new EnemyParabolic(20, 20, 5, Math.PI / 6, 0.02, animation));
+};
+
+function spawnEnemyWave(n) {
+    for (var i = 0; i < n; i++) {
+        setTimeout(fSpawnEnemyWave, i * 1250);
+    }
+}
+
+var fSpawnEnemyWave = function() {
+    var animation = new Animation();
+    animation.addSprite(new Sprite("img/red/enemy/1.png"));
+    animation.addSprite(new Sprite("img/red/enemy/2.png"));
+    animation.addSprite(new Sprite("img/red/enemy/3.png"));
+    animation.addSprite(new Sprite("img/red/enemy/4.png"));
+    animation.addSprite(new Sprite("img/red/enemy/5.png"));
+    animation.addSprite(new Sprite("img/red/enemy/6.png"));
+    animation.addSprite(new Sprite("img/red/enemy/7.png"));
+    animation.addSprite(new Sprite("img/red/enemy/8.png"));
+    enemies.push(new EnemyWave(20, 20, 5, 0, 0.05, animation));
 };

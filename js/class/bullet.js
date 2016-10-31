@@ -5,7 +5,18 @@ var Bullet = function(x, y, speed, angle, type) {
     this.angle = angle;
     this.type = type; // 0-player, 1-bullet, 2-bullet2, 3-bullet3...
     this.img = new Image();
-    this.img.src = (this.type === 0) ? "img/blue/bullet.png" : "img/red/bullet.png";
+    if(this.type === 0){
+        this.img.src = "img/blue/bullet.png";
+    }
+    if(this.type === 1){
+        this.img.src = "img/red/bullet.png";
+    }
+    if(this.type === 2){
+        this.img.src = "img/red/bullet-purple.png";
+    }
+    if(this.type === 3){
+        this.img.src = "img/red/bullet-yellow.png";
+    }
     this.width = player.width / 3;
     this.height = player.height / 3;
 };

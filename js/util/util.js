@@ -61,6 +61,9 @@ function nextRound() {
 						if (config.levels[level][r].enemies.enemyParabolic > 0) {
 							spawnEnemyParabolic(config.levels[level][r].enemies.enemyParabolic);
 						}
+						if (config.levels[level][r].enemies.enemyWave > 0) {
+							spawnEnemyWave(config.levels[level][r].enemies.enemyWave);
+						}
 					}
 				}
 			});

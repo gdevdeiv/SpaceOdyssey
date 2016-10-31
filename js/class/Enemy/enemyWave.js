@@ -1,5 +1,5 @@
 var EnemyWave = function(x, y, speed, angle, angularSpeed, animation) {
-    Enemy.call(this, x, y, speed, angle, animation);
+    Enemy.call(this, x, y, speed, angle, angularSpeed, animation);
 };
 
 EnemyWave.prototype = Object.create(Enemy.prototype);
@@ -9,12 +9,13 @@ EnemyWave.prototype.update = function() {
     Enemy.prototype.update.call(this);
     this.x += this.speed*Math.cos(this.angle);
     this.y += this.speed*Math.sin(this.angle);
-    if(angle > Math.PI/2){
-        angularSpeed *= -1;
+    if(this.angle > Math.PI/3){
+        this.angularSpeed *= -1;
     }
-    if(angle < -Math.PI/2){
-        angularSpeed *= -1;
+    if(this.angle < -Math.PI/3){
+        this.angularSpeed *= -1;
     }
+    this.angle += this.angularSpeed;
 
     if (ticks % this.animation.getUpdateFrequency() === 0) {
         this.animation.tick();
