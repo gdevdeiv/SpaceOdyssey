@@ -1,6 +1,5 @@
 #TODO
 
-- Reemplazar aleatoriedad por guión
 - Meteoritios
 - Recogibles
 - Arma secundaria

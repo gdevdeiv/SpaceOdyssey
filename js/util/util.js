@@ -51,7 +51,7 @@ function nextRound() {
 			$("#round").fadeOut("slow", function() {
 				for (var level in config.levels) {
 					for (var r in config.levels[level]) {
-						if (r != round) { continue; }
+						if (r != round - 1) { continue; }
 						if (config.levels[level][r].asteroids > 0) {
 							spawnAsteroid(config.levels[level][r].asteroids);
 						}
