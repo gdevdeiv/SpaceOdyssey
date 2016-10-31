@@ -2,7 +2,8 @@ var temp;
 var fps = 60;
 var gameOver = false;
 var ticks = 0;
-var counterInmunity;
+var counterInmunity = "";
+var counterLaser = "";
 
 var round = 0;
 var doCheckRound = true;

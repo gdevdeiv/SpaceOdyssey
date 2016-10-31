@@ -1,11 +1,6 @@
-var BulletLaser = function(x, y, speed, angle) {
-    Bullet.call(this, x, y, speed, angle, 4);
-    if(this.x > height / 20 + 100){
-        this.direction = "vertical";
-    }
-    if(this.y > hight /20 + 100){
-        this.direction = "horizontal";
-    }
+var BulletLaser = function(enemyRef) {
+    Bullet.call(this, 0, 0, 0, 0, 5);
+    this.enemyRef = enemyRef;
 };
 
 BulletLaser.prototype = Object.create(Bullet.prototype);
@@ -13,8 +8,16 @@ BulletLaser.prototype.constructor = BulletLaser;
 
 BulletLaser.prototype.update = function() {
     Bullet.prototype.update.call(this);
-    this.x += Math.cos(this.angle) * this.speed;
-    this.y += Math.sin(this.angle) * this.speed;
-    this.playerCollision();
-    this.asteroidCollision();
+    var laserExist = true;
+    if(laserExist){
+        console.log("la bala existe")
+        this.x = this.enemyRef.x
+        this.y = this.enemyRef.y
+        setTimeout("this.laserExistFasle()",2000);
+    }
 };
+
+BulletLaser.prototype.laserExistFalse = function () {
+    laserExist = !laserExist;
+    this.destroyBullet(this);
+}
