@@ -35,7 +35,7 @@ function resizeCanvas() {
 }
 
 function checkRound() {
-	if (enemies.length > 0) {
+	if (enemies.length > 0 || gameOver || !isThereNewRound()) {
 		return;
 	}
 	nextRound();
@@ -69,6 +69,15 @@ function nextRound() {
 			});
 		}, 2000);
 	});
+}
+
+function isThereNewRound() {
+	for (var level in config.levels) {
+		for (var r in config.levels[level]) {
+			if (r > round - 1) { return true; }
+		}
+	}
+	return false;
 }
 
 var fCheckRoundAgain = function() {
