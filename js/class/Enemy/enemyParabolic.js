@@ -1,5 +1,6 @@
 var EnemyParabolic = function(x, y, speed, angle, angularSpeed, animation) {
-    Enemy.call(this, x, y, speed, angle, angularSpeed, animation);
+    Enemy.call(this, x, y, speed, angle, animation);
+    this.angularSpeed = angularSpeed;
 };
 
 EnemyParabolic.prototype = Object.create(Enemy.prototype);
