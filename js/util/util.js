@@ -44,17 +44,30 @@ function checkRound() {
 function nextRound() {
 	doCheckRound = false;
 	clearTimeout(counterRound);
-	conunterRound = setTimeout("checkRoundAgain()",5000);
+	conunterRound = setTimeout(fCheckRoundAgain, 5000);
 	round++;
 	$("#round").html("<h1>Round " + round + "</h1>").fadeIn("slow", function() {
 		setTimeout(function() {
 			$("#round").fadeOut("slow", function() {
-				spawnEnemyParabolic(6);
+				for (var level in config.levels) {
+					for (var r in config.levels[level]) {
+						if (r != round) { continue; }
+						if (config.levels[level][r].asteroids > 0) {
+							spawnAsteroid(config.levels[level][r].asteroids);
+						}
+						if (config.levels[level][r].enemies.enemyFollower > 0) {
+							spawnEnemyFollower(config.levels[level][r].enemies.enemyFollower);
+						}
+						if (config.levels[level][r].enemies.enemyParabolic > 0) {
+							spawnEnemyParabolic(config.levels[level][r].enemies.enemyParabolic);
+						}
+					}
+				}
 			});
 		}, 2000);
 	});
 }
 
-function checkRoundAgain(){
+var fCheckRoundAgain = function() {
 	doCheckRound = true;
-}
+};
