@@ -103,7 +103,7 @@ var fSpawnEnemyFollower = function() {
     animation.addSprite(new Sprite("img/red/enemy/6.png"));
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
-    enemies.push(new EnemyFollower(300, 300, 3, 10, animation));
+    enemies.push(new EnemyFollower(Math.random() * width, Math.random() * height, 3, 10, animation));
 };
 
 var fSpawnEnemyParabolic = function() {
@@ -116,7 +116,7 @@ var fSpawnEnemyParabolic = function() {
     animation.addSprite(new Sprite("img/red/enemy/6.png"));
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
-    enemies.push(new EnemyParabolic(20, 20, 5, Math.PI / 6, 0.02, animation));
+    enemies.push(new EnemyParabolic(0, Math.random() * height, 5, Math.PI / 6, 0.02, animation));
 };
 
 var fSpawnEnemyWave = function() {
@@ -129,7 +129,7 @@ var fSpawnEnemyWave = function() {
     animation.addSprite(new Sprite("img/red/enemy/6.png"));
     animation.addSprite(new Sprite("img/red/enemy/7.png"));
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
-    enemies.push(new EnemyWave(20, 20, 5, 0, 0.05, animation));
+    enemies.push(new EnemyWave(0, Math.random() * height, 5, 0, 0.05, animation));
 };
 
 function spawnEnemyLaser(n) {
