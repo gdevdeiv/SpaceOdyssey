@@ -116,3 +116,31 @@ var fSpawnEnemyWave = function() {
     animation.addSprite(new Sprite("img/red/enemy/8.png"));
     enemies.push(new EnemyWave(20, 20, 5, 0, 0.05, animation));
 };
+
+function spawnEnemyLaser(n) {
+    for (var i = 0; i < n; i++) {
+        setTimeout(fSpawnEnemyLaser, i * 1250);
+    }
+}
+
+var fSpawnEnemyLaser = function() {
+    var animation = new Animation();
+    animation.addSprite(new Sprite("img/red/enemy/1.png"));
+    animation.addSprite(new Sprite("img/red/enemy/2.png"));
+    animation.addSprite(new Sprite("img/red/enemy/3.png"));
+    animation.addSprite(new Sprite("img/red/enemy/4.png"));
+    animation.addSprite(new Sprite("img/red/enemy/5.png"));
+    animation.addSprite(new Sprite("img/red/enemy/6.png"));
+    animation.addSprite(new Sprite("img/red/enemy/7.png"));
+    animation.addSprite(new Sprite("img/red/enemy/8.png"));
+    var spawnPosition = Math.random();
+    if (spawnPosition < 0.25) {             //case up
+        enemies.push(new EnemyLaser(20, height, 5, 0, "up", animation));
+    }else if(spawnPosition < 0.5) {         //case down
+        enemies.push(new EnemyLaser(20, 20, 5, 0, "down", animation));
+    }else if(spawnPosition < 0.75) {        //case right
+        enemies.push(new EnemyLaser(20, 20, 5, -Math.PI/2, "right", animation));
+    }else{                                  //case left
+        enemies.push(new EnemyLaser(20, 20, 5, -Math.PI/2, "left", animation));
+    }
+};
