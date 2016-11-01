@@ -14,26 +14,20 @@ GameInput.prototype.init = function() {
 
 GameInput.prototype.initKeyboard = function() {
     $(document).keydown(function(event) {
-        switch (event.which) {
-            case 87: // W
-            case 38: // Upper arrow
-                goY(false);
-                break;
-            case 83: // S
-            case 40: // Bottom arrow
-                goY(true);
-                break;
-            case 65: // A
-            case 37: // Left arrow
-                goX(false);
-                break;
-            case 68: // D
-            case 39: // Right arrow
-                goX(true);
-                break;
-            case 32: // Space bar
-                player.shoot();
-                break;
+        if (event.which == 87 || event.which == 38) { // W, Upper arrow
+            goY(false);
+        }
+        if (event.which == 83 || event.which == 40) { // S, Bottom arrow
+            goY(true);
+        }
+        if (event.which == 65 || event.which == 37) { // A, Left arrow
+            goX(false);
+        }
+        if (event.which == 68 || event.which == 39) { // D, Right arrow
+            goX(true);
+        }
+        if (event.which == 32) { // Space bar
+            player.shoot();
         }
     });
     $(document).keyup(function(event) {
