@@ -5,16 +5,16 @@ var Bullet = function(x, y, speed, angle, type) {
     this.angle = angle;
     this.type = type; // 0-player, 1-bullet, 2-bullet2, 3-bullet3...
     this.img = new Image();
-    if(this.type === 0){    //player
+    if (this.type === 0) {
         this.img.src = "img/blue/bullet.png";
     }
-    if(this.type === 1){    //simple
+    if (this.type === 1) {
         this.img.src = "img/red/bullet.png";
     }
-    if(this.type === 2){    //radial
+    if (this.type === 2) {
         this.img.src = "img/red/bullet-purple.png";
     }
-    if(this.type === 3){    //follower
+    if (this.type === 3) {
         this.img.src = "img/red/bullet-yellow.png";
     }
     if(this.type ===4){     //laser
@@ -73,12 +73,10 @@ Bullet.prototype.enemyCollision = function() {
             var rand = Math.random();
             if (rand > 0.95) {
                 items.push(new Item(enemies[enemy].x, enemies[enemy].y, "energy"));
-            } else if (rand > 0.8) {
-                items.push(new Item(enemies[enemy].x, enemies[enemy].y, "ammo"));
             }
             audio.playBoom();
             player.addScore(50);
-            enemies.splice(enemy, 1);
+            enemies[enemy].removeHealth(1);
             this.destroyBullet(this);
             break;
         }
@@ -95,12 +93,10 @@ Bullet.prototype.asteroidCollision = function() {
             var rand = Math.random();
             if (rand > 0.95) {
                 items.push(new Item(asteroids[asteroid].x, asteroids[asteroid].y, "energy"));
-            } else if (rand > 0.8) {
-                items.push(new Item(asteroids[asteroid].x, asteroids[asteroid].y, "ammo"));
             }
             audio.playBoom();
             player.addScore(50);
-            if(asteroids[asteroid].size < 4){
+            if (asteroids[asteroid].size < 4) {
                 asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"right","up"));
                 asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"left","down"));
             }

@@ -1,6 +1,5 @@
 function updateHud() {
     updateEnergy();
-    updateAmmo();
     updateScore();
     updateRoundInfo();
 }
@@ -16,13 +15,6 @@ function updateEnergy() {
         context.fillStyle = 'rgba(227, 148, 21, 0.4)';
         context.fillRect(265 - (20 + (j * 25)), 20, 20, 20);
     }
-}
-
-function updateAmmo() {
-    context.fillStyle = '#0496C9';
-    context.fillRect(20, 60, (245 / player.getMaxAmmo()) * player.getAmmo(), 5);
-    context.fillStyle = 'rgba(4, 150, 201, 0.4)';
-    context.fillRect(265, 60, -245 + (245 / player.getMaxAmmo()) * player.getAmmo(), 5);
 }
 
 function updateScore() {

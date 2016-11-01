@@ -19,8 +19,6 @@ Item.prototype.update = function() {
 	if (Math.abs(this.x - player.x) < this.width && Math.abs(this.y - player.y) < this.height) {
 		if (this.type == "energy") {
 			player.addEnergy(1);
-		} else if (this.type == "ammo") {
-			player.addAmmo(5);
 		}
 		player.addScore(25);
 		items.splice(this, 1);

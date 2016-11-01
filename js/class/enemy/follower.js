@@ -7,8 +7,8 @@ EnemyFollower.prototype.constructor = EnemyFollower;
 
 EnemyFollower.prototype.update = function() {
     Enemy.prototype.update.call(this);
-    this.x += this.speed*Math.cos(this.angle);
-    this.y += this.speed*Math.sin(this.angle);
+    this.x += this.speed * Math.cos(this.angle);
+    this.y += this.speed * Math.sin(this.angle);
     var _dx = player.x - this.x;
     var _dy = player.y - this.y;
     this.angle = Math.atan2(_dy, _dx);

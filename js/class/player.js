@@ -17,11 +17,10 @@ var Player = function(animation) {
     this.maxSprites = 5;
     this.energy = 10;
     this.maxEnergy = 10;
-    this.ammo = 40;
-    this.maxAmmo = 40;
     this.shootSpeed = 10;
     this.inmune = false;
     this.inmuneTime = 1000;
+    this.weapon = new WeaponBasic()
 };
 
 Player.prototype.tick = function() {
@@ -60,15 +59,20 @@ Player.prototype.update = function() {
 
 Player.prototype.render = function() {
     drawRotatedImage(this.animation.getActualSprite().getImg(), this.x, this.y, this.width, this.height, this.angle);
+    if (this.inmune) {
+        context.strokeStyle = 'white';
+        context.beginPath();
+            context.arc(this.x, this.y, this.width / 2, 0, 2 * Math.PI, true);
+            context.stroke();
+        context.closePath();
+    }
 };
 
 Player.prototype.shoot = function() {
     if (gameOver) {
         return;
     }
-    if (this.removeAmmo(1)) {
-        bullets.push(new BulletFriendly(this.x + 75 * Math.cos(this.angle), this.y + 75 * Math.sin(this.angle), this.shootSpeed, this.angle));
-    }
+    this.weapon.shoot();
 };
 
 Player.prototype.getScore = function() {
@@ -107,32 +111,6 @@ Player.prototype.removeEnergy = function(n) {
         return false;
     }
     this.energy -= n;
-    return true;
-};
-
-Player.prototype.getAmmo = function() {
-    return this.ammo;
-};
-
-Player.prototype.getMaxAmmo = function() {
-    return this.maxAmmo;
-};
-
-Player.prototype.addAmmo = function(n) {
-    if (this.ammo + n > this.maxAmmo) {
-        this.ammo = this.maxAmmo;
-        return false;
-    }
-    this.ammo += n;
-    return true;
-};
-
-Player.prototype.removeAmmo = function(n) {
-    if (this.ammo - n < 0) {
-        this.ammo = 0;
-        return false;
-    }
-    this.ammo -= n;
     return true;
 };
 
