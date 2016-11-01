@@ -5,17 +5,20 @@ var Bullet = function(x, y, speed, angle, type) {
     this.angle = angle;
     this.type = type; // 0-player, 1-bullet, 2-bullet2, 3-bullet3...
     this.img = new Image();
-    if(this.type === 0){
+    if(this.type === 0){    //player
         this.img.src = "img/blue/bullet.png";
     }
-    if(this.type === 1){
+    if(this.type === 1){    //simple
         this.img.src = "img/red/bullet.png";
     }
-    if(this.type === 2){
+    if(this.type === 2){    //radial
         this.img.src = "img/red/bullet-purple.png";
     }
-    if(this.type === 3){
+    if(this.type === 3){    //follower
         this.img.src = "img/red/bullet-yellow.png";
+    }
+    if(this.type ===4){     //laser
+        this.img.src = "img/laser_middle.png";
     }
     this.width = player.width / 3;
     this.height = player.height / 3;
