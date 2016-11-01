@@ -46,7 +46,7 @@ function nextRound() {
 	clearTimeout(counterRound);
 	conunterRound = setTimeout(fCheckRoundAgain, 5000);
 	round++;
-	$("#round").html("<h1>Round " + round + "</h1>").fadeIn("slow", function() {
+	$("#round").html("<h1 class='glitch' data-text='Round " + round + "'>Round " + round + "</h1>").fadeIn("slow", function() {
 		setTimeout(function() {
 			$("#round").fadeOut("slow", function() {
 				/*for (var level in config.levels) {
