@@ -104,6 +104,18 @@ function spawnEnemyWave(n) {
     }
 }
 
+function spawnEnemyLaser(n) {
+    for (var i = 0; i < n; i++) {
+        setTimeout(fSpawnEnemyLaser, i * 1250);
+    }
+}
+
+function spawnEnemyBoss() {
+    for (var i = 0; i < 1; i++) {
+        setTimeout(fSpawnEnemyBoss, i * 1250);
+    }
+}
+
 var fSpawnEnemyFollower = function() {
     var animation = new Animation();
     animation.addSprite(new Sprite("img/red/enemy/1.png"));
@@ -143,12 +155,6 @@ var fSpawnEnemyWave = function() {
     enemies.push(new EnemyWave(0, Math.random() * height, 5, 0, 0.05, animation));
 };
 
-function spawnEnemyLaser(n) {
-    for (var i = 0; i < n; i++) {
-        setTimeout(fSpawnEnemyLaser, i * 1250);
-    }
-}
-
 var fSpawnEnemyLaser = function() {
     var animation = new Animation();
     animation.addSprite(new Sprite("img/red/enemy/1.png"));
@@ -169,4 +175,17 @@ var fSpawnEnemyLaser = function() {
     }else{                                  //case left
         enemies.push(new EnemyLaser(width, height/20, 2, Math.PI/2, "left", animation));
     }
+};
+
+var fSpawnEnemyBoss = function() {
+    var animation = new Animation();
+    animation.addSprite(new Sprite("img/red/enemy/1.png"));
+    animation.addSprite(new Sprite("img/red/enemy/2.png"));
+    animation.addSprite(new Sprite("img/red/enemy/3.png"));
+    animation.addSprite(new Sprite("img/red/enemy/4.png"));
+    animation.addSprite(new Sprite("img/red/enemy/5.png"));
+    animation.addSprite(new Sprite("img/red/enemy/6.png"));
+    animation.addSprite(new Sprite("img/red/enemy/7.png"));
+    animation.addSprite(new Sprite("img/red/enemy/8.png"));
+    enemies.push(new EnemyBoss(width/2, 0, 5, Math.PI/2, animation));
 };
