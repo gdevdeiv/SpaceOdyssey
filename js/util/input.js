@@ -31,11 +31,25 @@ GameInput.prototype.initKeyboard = function() {
         }
     });
     $(document).keyup(function(event) {
-        if ($.inArray(event.which, input.keysX) != -1) {
-            goStopX();
+        if (event.which == 87 || event.which == 38) {
+            if (player.movementY !== 1) {
+                goStopY();
+            }
         }
-        if ($.inArray(event.which, input.keysY) != -1) {
-            goStopY();
+        if (event.which == 83 || event.which == 40) {
+            if (player.movementY !== -1) {
+                goStopY();
+            }
+        }
+        if (event.which == 65 || event.which == 37) {
+            if (player.movementX !== 1) {
+                goStopX();
+            }
+        }
+        if (event.which == 68 || event.which == 39) {
+            if (player.movementX !== -1) {
+                goStopX();
+            }
         }
     });
 };
