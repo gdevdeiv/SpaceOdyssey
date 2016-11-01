@@ -75,7 +75,7 @@ Bullet.prototype.enemyCollision = function() {
             }
             audio.playBoom();
             player.addScore(50);
-            enemies.splice(enemy, 1);
+            enemies[enemy].removeHealth(1);
             this.destroyBullet(this);
             break;
         }

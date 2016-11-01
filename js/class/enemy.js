@@ -9,6 +9,8 @@ var Enemy = function(x, y, speed, angle, animation) {
     this.width = width / 20;
     this.height = width / 20;
     this.shootSpeed = 10;
+    this.health = 5;
+    this.maxHealth = 5;
 }; 
 
 Enemy.prototype.tick = function() {
@@ -30,7 +32,7 @@ Enemy.prototype.update = function() {
                 audio.playBoom();
                 player.removeScore(150);
                 player.removeEnergy(1);
-                enemies.splice(enemies.indexOf(this), 1);
+                this.removeHealth(1);
                 player.inmune = true;
                 clearTimeout(counterInmunity);
                 counterInmunity = setTimeout(function() {
@@ -43,6 +45,15 @@ Enemy.prototype.update = function() {
 
 Enemy.prototype.render = function() {
     drawRotatedImage(this.animation.getActualSprite().getImg(), this.x, this.y, this.width, this.height, this.angle + Math.PI);
+    context.fillStyle = 'rgba(255, 0, 0, 0.5)';
+    context.fillRect(this.x - (this.width / 2), this.y - (this.height / 1.5), ((this.width / this.maxHealth) * this.health), 5);
+};
+
+Enemy.prototype.removeHealth = function(n) {
+    if (this.health - n <= 0) {
+        enemies.splice(enemies.indexOf(this), 1);
+    }
+    this.health -= n;
 };
 
 Enemy.prototype.shootSimple = function() {
