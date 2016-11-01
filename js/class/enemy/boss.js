@@ -6,11 +6,11 @@ var EnemyBoss = function(x, y, speed, angle, animation) {
     this.health = 300;
     this.maxHealth = 300;
     this.simpleTick = ticks;
-    this.ticksBetwnSimple = 100;
+    this.ticksBetwnSimple = 58;
     this.radialTick = ticks;
-    this.ticksBetwnRadial = 500;
+    this.ticksBetwnRadial = 401;
     this.followerTick = ticks;
-    this.ticksBetwnFollower = 1;
+    this.ticksBetwnFollower = 503;
     this.aceleration = 0.01;
     this.chargeTick = ticks;
     this.chargePreparation = 60;
@@ -23,6 +23,8 @@ EnemyBoss.prototype.constructor = EnemyBoss;
 EnemyBoss.prototype.update = function() {
     Enemy.prototype.update.call(this);
 
+
+
     if (ticks - this.simpleTick > this.ticksBetwnSimple){
         this.shootSimple();
         this.simpleTick = ticks;
@@ -31,12 +33,17 @@ EnemyBoss.prototype.update = function() {
         this.shootRadial();
         this.radialTick = ticks;
     }
-    if (ticks - this.followerTick < this.ticksBetwnFollower){
+    if (ticks - this.followerTick > this.ticksBetwnFollower){
         this.shootFollower();
+        this.followerTick = ticks;
     }
     var _dx = player.x - this.x;
     var _dy = player.y - this.y;
     this.angle = Math.atan2(_dy, _dx);
+
+
+
+
 
     if (this.pattern == 0){ //ves desplazandote hasta la posicion incial
         this.moveInitialPosition();   
