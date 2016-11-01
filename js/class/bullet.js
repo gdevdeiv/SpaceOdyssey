@@ -17,6 +17,9 @@ var Bullet = function(x, y, speed, angle, type) {
     if (this.type === 3) {
         this.img.src = "img/red/bullet-yellow.png";
     }
+    if(this.type ===4){     //laser
+        this.img.src = "img/laser_middle.png";
+    }
     this.width = player.width / 3;
     this.height = player.height / 3;
 };
