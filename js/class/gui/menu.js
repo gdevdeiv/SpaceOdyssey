@@ -9,11 +9,7 @@ GameMenu.prototype.init = function() {
         });
     });
     $("#replay").click(function() {
-        $("#gameover").fadeOut("slow", function() {
-            clearTimeout(temp);
-            clearCanvas();
-            start();
-        });
+        window.location = window.location;
     });
 };
 
