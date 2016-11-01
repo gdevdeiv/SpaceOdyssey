@@ -17,8 +17,6 @@ var Player = function(animation) {
     this.maxSprites = 5;
     this.energy = 10;
     this.maxEnergy = 10;
-    this.ammo = 40;
-    this.maxAmmo = 40;
     this.shootSpeed = 10;
     this.inmune = false;
     this.inmuneTime = 1000;
@@ -113,32 +111,6 @@ Player.prototype.removeEnergy = function(n) {
         return false;
     }
     this.energy -= n;
-    return true;
-};
-
-Player.prototype.getAmmo = function() {
-    return this.ammo;
-};
-
-Player.prototype.getMaxAmmo = function() {
-    return this.maxAmmo;
-};
-
-Player.prototype.addAmmo = function(n) {
-    if (this.ammo + n > this.maxAmmo) {
-        this.ammo = this.maxAmmo;
-        return false;
-    }
-    this.ammo += n;
-    return true;
-};
-
-Player.prototype.removeAmmo = function(n) {
-    if (this.ammo - n < 0) {
-        this.ammo = 0;
-        return false;
-    }
-    this.ammo -= n;
     return true;
 };
 

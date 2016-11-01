@@ -70,8 +70,6 @@ Bullet.prototype.enemyCollision = function() {
             var rand = Math.random();
             if (rand > 0.95) {
                 items.push(new Item(enemies[enemy].x, enemies[enemy].y, "energy"));
-            } else if (rand > 0.8) {
-                items.push(new Item(enemies[enemy].x, enemies[enemy].y, "ammo"));
             }
             audio.playBoom();
             player.addScore(50);
@@ -92,8 +90,6 @@ Bullet.prototype.asteroidCollision = function() {
             var rand = Math.random();
             if (rand > 0.95) {
                 items.push(new Item(asteroids[asteroid].x, asteroids[asteroid].y, "energy"));
-            } else if (rand > 0.8) {
-                items.push(new Item(asteroids[asteroid].x, asteroids[asteroid].y, "ammo"));
             }
             audio.playBoom();
             player.addScore(50);
