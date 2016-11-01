@@ -34,20 +34,35 @@ canvas {
     pointer-events: none;
 }
 
-#menu, #round {
+#menu, #round, #gameover {
     position: absolute;
     top: 30%;
     width: 100%;
     text-align: center;
 }
 
-#menu > h1, #round > h1 {
+#gameover {
+    display: none;
+    top: 15% !important;
+}
+
+#menu > h1, #round > h1, #gameover > h1 {
     font-family: '8bitOperatorBold';
     font-size: 96px;
     color: white;
+    cursor: default;
+    user-select: none;
 }
 
-#menu > button {
+#gameover > h3 {
+    font-family: '8bitOperatorBold';
+    font-size: 72px;
+    color: white;
+    cursor: default;
+    user-select: none;
+}
+
+#menu > button, #gameover > button {
     width: 320px;
     height: 100px;
     background: transparent;
@@ -57,8 +72,9 @@ canvas {
     font-size: 36px;
     text-align: center;
     cursor: pointer;
+    user-select: none;
 }
-#menu > button:hover {
+#menu > button:hover, #gameover > button:hover {
     background: white;
     color: black;
 }
