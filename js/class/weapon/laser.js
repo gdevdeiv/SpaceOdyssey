@@ -1,4 +1,4 @@
-var WeaponLaser = function() {
+/*var WeaponLaser = function() {
     Weapon.call(this, 4, 0);
 };
 
@@ -17,4 +17,4 @@ WeaponBasic.prototype.shoot = function() {
     player.speedY -= Math.sin(player.angle) * this.recoil;
 
     Weapon.prototype.endShoot.call(this);
-};
+};*/
