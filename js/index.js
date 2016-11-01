@@ -87,7 +87,9 @@ var fLoop = function() {
 
     updateHud();
     if (gameOver) {
-        renderGameOverScreen();
+        context.fillStyle = 'rgba(23, 23, 23, 0.5)';
+        context.fillRect(0, 0, width, height);
+        menu.showGameOver();
     }
 
     ticks++;
