@@ -1,20 +1,20 @@
-/*var WeaponLaser = function() {
+var WeaponLaser = function() {
     Weapon.call(this, 4, 0);
 };
 
-WeaponBasic.prototype = Object.create(Weapon.prototype);
-WeaponBasic.prototype.constructor = WeaponBasic;
+WeaponLaser.prototype = Object.create(Weapon.prototype);
+WeaponLaser.prototype.constructor = WeaponLaser;
 
-WeaponBasic.prototype.shoot = function() {
+WeaponLaser.prototype.shoot = function() {
     Weapon.prototype.shoot.call(this);
 
     if (!this.isFinallyShooting) {
         return;
     }
 
-    bullets.push(new BulletFriendly(player.x + 75 * Math.cos(player.angle), player.y + 75 * Math.sin(player.angle), player.shootSpeed, player.angle));
+    bullets.push(new BulletLaser(this));
     player.speedX -= Math.cos(player.angle) * this.recoil;
     player.speedY -= Math.sin(player.angle) * this.recoil;
 
     Weapon.prototype.endShoot.call(this);
-};*/
+};
