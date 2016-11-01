@@ -36,8 +36,22 @@ EnemyBoss.prototype.update = function() {
     this.angle = Math.atan2(_dy, _dx);
 
     if (this.pattern == 0){ //ves desplazandote hasta la posicion incial
+        this.moveInitialPosition();   
+    }
 
-        if(this.x < width/2){
+    if (this.pattern == 1){ //movimiento en círculos
+        this.circularMovement();
+    }
+    if (this.pattern == 2){ // embestida
+
+    }
+    if (ticks % this.animation.getUpdateFrequency() === 0) {
+        this.animation.tick();
+    }
+};
+
+EnemyBoss.prototype.moveInitialPosition = function(){
+    if(this.x < width/2){
             this.x += this.speed;
         }
         if(this.x > width/2){
@@ -85,41 +99,41 @@ EnemyBoss.prototype.update = function() {
                 durationPattern2 = 1000 + Math.random()*500;
             }
         }
-        
+}
+
+EnemyBoss.prototype.circularMovement = function(){
+    if (this.y < centerY){
+        this.x+= this.speed/2;
     }
-    if (this.pattern == 1){ //movimiento en círculos
-        if (this.y < centerY){
-            this.x+= this.speed/2;
-        }
-        if (this.y > centerY){
-            this.x-= this.speed/2;
-        }
-        sqroot = Math.sqrt(radius * radius - (this.x - centerX)*(this.x - centerX));
-        if (this.x > centerX && this.y < centerY){ // primer cuadrante
-            this.y = -sqroot+centerY;
-            if (this.y > centerY-50){this.y = centerY+1}
-            this.speed -= this.aceleration;
-        }
-        if (this.x > centerX && this.y > centerY){ // cuarto cuadrante
-            this.y = sqroot+centerY;
-            this.speed += this.aceleration;
-        }
-        if(this.x < centerX && this.y > centerY){ //tercer cuadrante
-            this.y = sqroot+centerY;
-            if (this.y < centerY+50){this.y = centerY-1}
-            this.speed -= this.aceleration;
-        }
-        if(this.x < centerX && this.y < centerY){ //segundo cuadrante
-            this.y=-sqroot+centerY;
-            this.speed += this.aceleration;
-        }
-        durationPattern2--;
-        if(durationPattern2 < 0){
-            console.log("pattern 3")
-            this.pattern++
-        }
+    if (this.y > centerY){
+        this.x-= this.speed/2;
     }
-    if (ticks % this.animation.getUpdateFrequency() === 0) {
-        this.animation.tick();
+    sqroot = Math.sqrt(radius * radius - (this.x - centerX)*(this.x - centerX));
+    if (this.x > centerX && this.y < centerY){ // primer cuadrante
+        this.y = -sqroot+centerY;
+        if (this.y > centerY-50){this.y = centerY+1}
+        this.speed -= this.aceleration;
     }
-};
+    if (this.x > centerX && this.y > centerY){ // cuarto cuadrante
+        this.y = sqroot+centerY;
+        this.speed += this.aceleration;
+    }
+    if(this.x < centerX && this.y > centerY){ //tercer cuadrante
+        this.y = sqroot+centerY;
+        if (this.y < centerY+50){this.y = centerY-1}
+        this.speed -= this.aceleration;
+    }
+    if(this.x < centerX && this.y < centerY){ //segundo cuadrante
+        this.y=-sqroot+centerY;
+        this.speed += this.aceleration;
+    }
+    durationPattern2--;
+    if(durationPattern2 < 0){
+        console.log("patron 2")
+        this.pattern++
+    }
+}
+
+EnemyBoss.prototype.charge = function(){
+    
+}
