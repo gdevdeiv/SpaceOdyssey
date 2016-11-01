@@ -1,26 +1,24 @@
 var BulletLaser = function(enemyRef) {
     Bullet.call(this, 0, 0, 0, 0, 4);
     this.enemyRef = enemyRef;
+    this.height = this.enemyRef.width / 4;
     if (this.enemyRef.direction == "left"){
-        this.height = this.enemyRef.width/4;
-        this.width = height - this.enemyRef.y - this.enemyRef.height/2 - this.height*2;
+        this.width = height - this.enemyRef.y - this.enemyRef.height/2;
         this.laserOff = this.enemyRef.x - Math.random() * (width - (width - this.enemyRef.x));
     }
     if (this.enemyRef.direction == "right"){
-        this.height = this.enemyRef.width/4;
-        this.width = height - this.enemyRef.y - this.enemyRef.height/2 - this.height*2;
+        this.width = height - this.enemyRef.y - this.enemyRef.height/2;
         this.laserOff = this.enemyRef.x + Math.random() * (width - this.enemyRef.x);
     }
     if (this.enemyRef.direction == "up"){
-        this.height = this.enemyRef.width/4;
-        this.width = width - this.enemyRef.x - this.enemyRef.width/2 - this. height*2;
+        this.width = width - this.enemyRef.x - this.enemyRef.width/2;
         this.laserOff = this.enemyRef.y - Math.random() * (height - (height - this.enemyRef.y));
     }
     if (this.enemyRef.direction == "down"){
-        this.height = this.enemyRef.width/4;
-        this.width = width - this.enemyRef.x - this.enemyRef.width/2 - this. height*2;
+        this.width = width - this.enemyRef.x - this.enemyRef.width/2;
         this.laserOff = this.enemyRef.y + Math.random() * (height - this.enemyRef.y);
     }
+    this.width -= this.height * 2;
     this.imgStart = new Image();
     this.imgEnd = new Image();
     this.imgStart.src = "img/laser_start.png";
