@@ -96,11 +96,7 @@ Bullet.prototype.asteroidCollision = function() {
             }
             audio.playBoom();
             player.addScore(50);
-            if (asteroids[asteroid].size < 4) {
-                asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"right","up"));
-                asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"left","down"));
-            }
-            asteroids.splice(asteroid, 1);
+            asteroids[asteroid].split();
             this.destroyBullet(this);
             break;
         }

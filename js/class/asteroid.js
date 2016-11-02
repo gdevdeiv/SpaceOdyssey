@@ -25,7 +25,7 @@ Asteroid.prototype.render = function() {
 
 Asteroid.prototype.update = function() {
     this.angle += 0.05;
-    switch (this.directionx){
+    switch (this.directionx) {
         case "right":
             this.x += this.speed * this.randomx;
             break;
@@ -33,7 +33,7 @@ Asteroid.prototype.update = function() {
             this.x -= this.speed * this.randomx;
             break;
     }
-    switch (this.directiony){
+    switch (this.directiony) {
         case "up":
             this.y -= this.speed * this.randomy;
             break;
@@ -41,11 +41,11 @@ Asteroid.prototype.update = function() {
             this.y += this.speed * this.randomy;
             break;
     }
-    if (!player.inmune){
-        if (this.x < 0) { this.directionx = "right"; }
-        if (this.x > window.innerWidth) { this.directionx = "left"; }
-        if (this.y < 0) { this.directiony = "down"; }
-        if (this.y > window.innerHeight) { this.directiony = "up"; }
+    if (this.x < 0) { this.directionx = "right"; }
+    if (this.x > window.innerWidth) { this.directionx = "left"; }
+    if (this.y < 0) { this.directiony = "down"; }
+    if (this.y > window.innerHeight) { this.directiony = "up"; }
+    if (!player.inmune) {
         if (this.x + this.width / 2 > player.x - player.width / 2 &&
             this.x - this.width / 2 < player.x - player.width / 2 &&
             this.y + this.height / 2 > player.y - player.height / 2 &&
@@ -58,8 +58,32 @@ Asteroid.prototype.update = function() {
             counterInmunity = setTimeout(function() {
                 player.inmune = false;
             }, player.inmuneTime);
+            this.split();
         }
     }
+    for (var enemy in enemies) {
+        if (this.x + this.width / 2 > enemies[enemy].x - enemies[enemy].width / 2 &&
+            this.x - this.width / 2 < enemies[enemy].x - enemies[enemy].width / 2 &&
+            this.y + this.height / 2 > enemies[enemy].y - enemies[enemy].height / 2 &&
+            this.y - this.height / 2 < enemies[enemy].y + enemies[enemy].height / 2
+        ) {
+            enemies[enemy].removeHealth(1);
+            audio.playBoom();
+            this.split();
+        }
+    }
+};
+
+Asteroid.prototype.split = function() {
+    if (this.size < 4) {
+        asteroids.push(new Asteroid(this.x, this.y, this.speed, 0, this.size + 1, "right", "up"));
+        asteroids.push(new Asteroid(this.x, this.y, this.speed, 0, this.size + 1, "left", "down"));
+    }
+    this.destroyAsteroid(this);
+};
+
+Asteroid.prototype.destroyAsteroid = function(asteroid) {
+    asteroids.splice(asteroids.indexOf(asteroid), 1);
 };
 
 function updateAsteroids() {
