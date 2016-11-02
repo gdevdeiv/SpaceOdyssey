@@ -110,8 +110,8 @@ function spawnEnemyLaser(n) {
     }
 }
 
-function spawnEnemyBoss() {
-    for (var i = 0; i < 1; i++) {
+function spawnEnemyBoss(n) {
+    for (var i = 0; i < n; i++) {
         setTimeout(fSpawnEnemyBoss, i * 1250);
     }
 }
