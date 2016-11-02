@@ -9,7 +9,6 @@ var GameInput = function() {
 GameInput.prototype.init = function() {
     this.initKeyboard();
     this.initMouse();
-    // this.touchInput();
 };
 
 GameInput.prototype.initKeyboard = function() {
@@ -72,23 +71,6 @@ GameInput.prototype.initMouse = function() {
         player.shoot();
     });
 };
-
-/* GameInput.prototype.initTouch = function() {
-    $("#canvas").mousemove(function(event) {
-        if (bIsMouseDown) {
-            player.x = event.clientX - tempX;
-            player.y = event.clientY - tempY;
-        }
-        $("#canvas").mousedown(function() {
-            bIsMouseDown = true;
-            tempX = event.clientX - player.x;
-            tempY = event.clientY - player.y;
-        });
-    });
-    $("#canvas").mouseup(function() {
-        bIsMouseDown = false;
-    });
-}; */
 
 function goX(b) {
     player.movementX = (b) ? 1 : -1;
