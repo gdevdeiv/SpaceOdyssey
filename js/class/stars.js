@@ -64,3 +64,8 @@ Stars.prototype.inBoundsX = function(x) {
 Stars.prototype.inBoundsY = function(y) {
     return (y > 0 && y < height);
 };
+
+Stars.prototype.resize = function() {
+    this.layers = [];
+    this.init();
+};

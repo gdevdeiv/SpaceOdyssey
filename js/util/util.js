@@ -26,12 +26,19 @@ function clearCanvas() {
 }
 
 function resizeCanvas() {
+	var resized = false;
+	if (width !== window.innerWidth || height !== window.innerHeight) {
+		resized = true;
+	}
 	width = window.innerWidth;
 	height = window.innerHeight;
 	canvas.width = width;
 	canvas.height = height;
 	bgCanvas.width = width;
 	bgCanvas.height = height;
+	if (resized) {
+		stars.resize();
+	}
 }
 
 function checkRound() {
