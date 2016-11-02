@@ -64,16 +64,11 @@ function nextRound() {
 						if (config.levels[level][r].enemies.enemyWave > 0) {
 							spawnEnemyWave(config.levels[level][r].enemies.enemyWave);
 						}
-<<<<<<< HEAD
 						if (config.levels[level][r].enemies.enemyLaser > 0) {
 							spawnEnemyLaser(config.levels[level][r].enemies.enemyLaser);
 						}
 						if (config.levels[level][r].enemies.enemyBoss > 0) {
 							spawnEnemyBoss(config.levels[level][r].enemies.enemyBoss);
-=======
-						if (config.levels[level][r].enemies.enemyBoss > 0) {
-							spawnEnemyBoss();
->>>>>>> 60261ad2d9ef0ee5765313df94b1b91a0d1fc356
 						}
 					}
 				}
