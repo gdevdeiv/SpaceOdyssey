@@ -28,7 +28,9 @@ var config = {
                 "enemies": {
                     "enemyFollower": 1,
                     "enemyParabolic": 1,
-                    "enemyWave": 1
+                    "enemyWave": 1,
+
+                    "enemyBoss": 0
                 },
                 "asteroids": 1
             },
@@ -36,17 +38,31 @@ var config = {
             {
                 "enemies": {
                     "enemyFollower": 2,
-                    "enemyParabolic": 2,
-                    "enemyWave": 2
+                    "enemyParabolic": 1,
+                    "enemyWave": 2,
+
+                    "enemyBoss": 0
                 },
-                "asteroids": 2
+                "asteroids": 1
             },
             // Ronda 3
             {
                 "enemies": {
                     "enemyFollower": 3,
-                    "enemyParabolic": 3,
-                    "enemyWave": 3
+                    "enemyParabolic": 2,
+                    "enemyWave": 3,
+
+                    "enemyBoss": 0
+                },
+                "asteroids": 2
+            },
+            {
+                "enemies": {
+                    "enemyFollower": 0,
+                    "enemyParabolic": 0,
+                    "enemyWave": 0,
+
+                    "enemyBoss": 1
                 },
                 "asteroids": 3
             },

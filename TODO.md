@@ -1,14 +1,15 @@
-#TODO
+# TODO
 
-- Meteoritios
-- Recogibles
+- Meteoritios impactan tanto con el jugador, como con los enemigos
+- Añadir variedad de recogibles
 - Arma secundaria
-- Patrones de movimientos
-- Ideas del Isaac
-- Ideas del Steredenn
-- Ideas del R-Type
-- Parpadeo con el daño
 - IA aliada
-- Retorcar gravedad y aceleración, junto con el Math.lerp
-- Añadir opacidad durante invulnerabilidad
-- Conversaciones por radio
+- Ajustar gravedad, fricción, aceleración y revisar la función Math.lerp()
+- Añadir audio
+
+# Referenced Games
+
+- The Binding of Isaac
+- Steredenn
+- R-Type
+- Chicken Invaders
