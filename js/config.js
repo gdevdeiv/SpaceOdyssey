@@ -49,6 +49,13 @@ var config = {
                     "enemyWave": 3
                 },
                 "asteroids": 3
+            },
+            // Ronda 4
+            {
+                "enemies": {
+                    "enemyBoss": 1
+                },
+                "asteroids": 1
             }
         ]
     ]
