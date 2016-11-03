@@ -124,6 +124,7 @@ BulletLaser.prototype.update = function() {
             this.deltaY = Math.tan(this.angle)*this.deltaX;
         }
         this.hitPlayer();
+        this.hitAsteroid();
         this.width = Math.sqrt(Math.pow(this.deltaX, 2) + Math.pow(this.deltaY, 2)) - (this.height*2 + this.enemyRef.width/2);
     }
 
@@ -190,6 +191,54 @@ BulletLaser.prototype.hitPlayer = function() {
             counterInmunity = setTimeout(function() {
                 player.inmune = false;   
             }, player.inmuneTime);
+        }
+    }
+};
+
+BulletLaser.prototype.hitAsteroid = function() {
+    for(var asteroid in asteroids){
+        this.realDeltaY = asteroids[asteroid].y - this.enemyRef.y;
+        if(asteroids[asteroid].x > this.enemyRef.x && asteroids[asteroid].y < this.enemyRef.y){ //1
+            this.tanReal = Math.tan(this.angle);
+        }
+        if(asteroids[asteroid].x < this.enemyRef.x && asteroids[asteroid].y < this.enemyRef.y){ //2
+            this.tanReal = -Math.tan(Math.PI - this.angle);
+        }
+        if(asteroids[asteroid].x < this.enemyRef.x && asteroids[asteroid].y > this.enemyRef.y){  //3 
+            this.tanReal = -Math.tan(Math.PI-this.angle);
+        }
+        if(asteroids[asteroid].x > this.enemyRef.x && asteroids[asteroid].y > this.enemyRef.y){ //4
+            this.tanReal = Math.tan(this.angle);
+        }
+        this.theoricalDeltaX = this.realDeltaY / this.tanReal;
+        if( asteroids[asteroid].x + asteroids[asteroid].width/2 > this.enemyRef.x + this.theoricalDeltaX &&
+        asteroids[asteroid].x - asteroids[asteroid].width/2 < this.enemyRef.x + this.theoricalDeltaX
+        ){
+            this.deltaX = asteroids[asteroid].x - this.enemyRef.x;
+            this.deltaY = asteroids[asteroid].y - this.enemyRef.y;
+            if (!asteroids[asteroid].inmune){
+                audio.playBoom();
+                if (asteroids[asteroid].size < 4) {
+                    asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"right","up"));
+                    asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"left","down"));
+                }
+                asteroids.splice(asteroid, 1);
+            }
+        }
+        if(this.angle == 0&&
+        asteroids[asteroid].y+asteroids[asteroid].height/2 > this.enemyRef.y &&
+        asteroids[asteroid].y-asteroids[asteroid].height/2 < this.enemyRef.y
+        ){
+            this.deltaX = asteroids[asteroid].x - this.enemyRef.x;
+            this.deltaY = asteroids[asteroid].y - this.enemyRef.y;
+            if (!asteroids[asteroid].inmune){
+                audio.playBoom();
+                if (asteroids[asteroid].size < 4) {
+                    asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"right","up"));
+                    asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"left","down"));
+                }
+                asteroids.splice(asteroid, 1);
+            }
         }
     }
 };
