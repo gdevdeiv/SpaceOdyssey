@@ -3,7 +3,7 @@ var BulletLaser = function(enemyRef, angle) {
     this.enemyRef = enemyRef;
     this.height = this.enemyRef.width / 4;
 
-    this.shootLaser = true;
+    this.enemyRef.shooting = false;
 
     this.imgStart = new Image();
     this.imgEnd = new Image();
@@ -26,30 +26,30 @@ BulletLaser.prototype.update = function() {
         this.enemyRef.angle += 2*Math.PI;
     }
     this.angle = this.enemyRef.angle;
-    if (this.shootLaser == true){
+    if (this.enemyRef.shooting == true){
         this.height = this.enemyRef.width / 4;
-        this.angleCorner1 = Math.atan2(this.enemyRef.y, width - this.enemyRef.x);
+        this.angleCorner1 = Math.PI*2-Math.atan2(this.enemyRef.y, width - this.enemyRef.x);
         while(this.angleCorner1 > 2*Math.PI){
             this.angleCorner1 -= 2*Math.PI;
         }
         while(this.angleCorner1 < 0){
             this.angleCorner1 += 2*Math.PI;
         }
-        this.angleCorner2 = Math.atan2(this.enemyRef.y, -this.enemyRef.x);
+        this.angleCorner2 = Math.PI*2 - Math.atan2(this.enemyRef.y, -this.enemyRef.x);
         while(this.angleCorner2 > 2*Math.PI){
             this.angleCorner2 -= 2*Math.PI;
         }
         while(this.angleCorner2 < 0){
             this.angleCorner2 += 2*Math.PI;
         }
-        this.angleCorner3 = Math.atan2(this.enemyRef.y - height, -this.enemyRef.x);
+        this.angleCorner3 = Math.PI*2 - Math.atan2(this.enemyRef.y - height, -this.enemyRef.x);
         while(this.angleCorner3 > 2*Math.PI){
             this.angleCorner3 -= 2*Math.PI;
         }
         while(this.angleCorner3 < 0){
             this.angleCorner3 += 2*Math.PI;
         }
-        this.angleCorner4 = Math.atan2(this.enemyRef.y - height, width - this.enemyRef.x);
+        this.angleCorner4 = Math.PI*2 - Math.atan2(this.enemyRef.y - height, width - this.enemyRef.x);
         while(this.angleCorner4 > 2*Math.PI){
             this.angleCorner4 -= 2*Math.PI;
         }
@@ -62,7 +62,7 @@ BulletLaser.prototype.update = function() {
         }
         if(this.angle == Math.PI/2){
             this.deltaX = 0;
-            this.deltaY = this.enemyRef.y;
+            this.deltaY = height-this.enemyRef.y;
         }
         if(this.angle == Math.PI){
             this.deltaX = this.enemyRef.x;
@@ -70,7 +70,7 @@ BulletLaser.prototype.update = function() {
         }
         if(this.angle == 3*Math.PI/2){
             this.deltaX = 0;
-            this.deltaY = height - this.enemyRef.y;
+            this.deltaY = this.enemyRef.y;
         }
         if(this.angle == this.angleCorner1){
             this.deltaX = width - this.enemyRef.x;
@@ -88,43 +88,43 @@ BulletLaser.prototype.update = function() {
             this.deltaX = width - this.enemyRef.x;
             this.deltaY = height - this.enemyRef.y
         }
-        if(this.angle > 0 && this.angle < this.angleCorner1){
+        if(this.angle > 0 && this.angle < this.angleCorner4){
             this.deltaX = width - this.enemyRef.x;
-            this.deltaY = Math.tan(this.angle)*this.deltaX;
+            this.deltaY = -Math.tan(this.angle)*this.deltaX;
         }
-        if(this.angle > this.angleCorner1 && this.angle < Math.PI/2){
+        if(this.angle > this.angleCorner4 && this.angle < Math.PI/2){
+            this.deltaY = this.enemyRef.y - height;
+            this.deltaX = this.deltaY / Math.tan(this.angle);
+        }
+        if(this.angle > Math.PI/2 && this.angle < this.angleCorner3){
+            this.deltaY = this.enemyRef.y - height;
+            this.deltaX = -this.deltaY / Math.tan(this.angle);
+        }
+        if(this.angle > this.angleCorner3 && this.angle < Math.PI){
+            this.deltaX = -this.enemyRef.x;
+            this.deltaY = -Math.tan(this.angle)*this.deltaX;
+        }
+        if(this.angle > Math.PI && this.angle < this.angleCorner2){
+            this.deltaX = -this.enemyRef.x;
+            this.deltaY = -Math.tan(this.angle)*this.deltaX;//ok
+        }
+        if(this.angle > this.angleCorner2 && this.angle < 3*Math.PI/2){
             this.deltaY = this.enemyRef.y;
             this.deltaX = this.deltaY / Math.tan(this.angle);
         }
-        if(this.angle > Math.PI/2 && this.angle < this.angleCorner2){
+        if(this.angle > 3*Math.PI/2 && this.angle < this.angleCorner1){
             this.deltaY = this.enemyRef.y;
-            this.deltaX = -this.deltaY / Math.tan(this.angle);
-        }
-        if(this.angle > this.angleCorner2 && this.angle < Math.PI){
-            this.deltaX = this.enemyRef.x;
-            this.deltaY = -Math.tan(this.angle)*this.deltaX;
-        }
-        if(this.angle > Math.PI && this.angle < this.angleCorner3){
-            this.deltaX = this.enemyRef.x;
-            this.deltaY = Math.tan(this.angle)*this.deltaX;
-        }
-        if(this.angle > this.angleCorner3 && this.angle < 3*Math.PI/2){
-            this.deltaY = height - this.enemyRef.y;
             this.deltaX = this.deltaY / Math.tan(this.angle);
         }
-        if(this.angle > 3*Math.PI/2 && this.angle < this.angleCorner4){
-            this.deltaY = height - this.enemyRef.y;
-            this.deltaX = -this.deltaY / Math.tan(this.angle);
-        }
-        if(this.angle > this.angleCorner4 && this.angle < 2*Math.PI){
+        if(this.angle > this.angleCorner1 && this.angle < 2*Math.PI){
             this.deltaX = width - this.enemyRef.x;
-            this.deltaY = -Math.tan(this.angle)*this.deltaX;
+            this.deltaY = Math.tan(this.angle)*this.deltaX;
         }
         this.width = Math.sqrt(Math.pow(this.deltaX, 2) + Math.pow(this.deltaY, 2)) - (this.height*2 + this.enemyRef.width/2);
     }
 
 
-    if (this.shootLaser == false) {
+    if (this.enemyRef.shooting == false) {
         this.width = 0;
         this.height = 0;
     }
@@ -136,9 +136,7 @@ BulletLaser.prototype.update = function() {
     drawRotatedImage(this.imgStart, this.x - (this.width/2 + this.height/2) * Math.cos(this.angle), this.y - (this.width/2 + this.height/2) * Math.sin(this.angle), this.height, this.height, this.angle);
     drawRotatedImage(this.imgEnd, this.x + (this.width/2 + this.height/2) * Math.cos(this.angle), this.y + (this.width/2 + this.height/2) * Math.sin(this.angle), this.height, this.height, this.angle);
     
-    if (ticks % 200 == 0) {
-        this.shootLaser = !this.shootLaser;
-    }
+    
 
 };
 

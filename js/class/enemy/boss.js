@@ -15,6 +15,8 @@ var EnemyBoss = function(x, y, speed, angle, animation) {
     this.chargeTick = ticks;
     this.chargePreparation = 60;
     this.saveSpeed = this.speed;
+    this.shoot = true;
+    this.shooting = false;
 };
 
 EnemyBoss.prototype = Object.create(Enemy.prototype);
@@ -22,7 +24,10 @@ EnemyBoss.prototype.constructor = EnemyBoss;
 
 EnemyBoss.prototype.update = function() {
     Enemy.prototype.update.call(this);
-
+    if (this.shoot == true){
+        this.shootLaser();
+        this.shoot = false;
+    }
 
 
     if (ticks - this.simpleTick > this.ticksBetwnSimple){
@@ -59,10 +64,6 @@ EnemyBoss.prototype.update = function() {
         this.animation.tick();
     }
 };
-
-
-
-
 
 
 
@@ -121,6 +122,10 @@ EnemyBoss.prototype.moveInitialPosition = function(){
 }
 
 EnemyBoss.prototype.circularMovement = function(){
+    if (ticks % 200 == 0) {
+        this.shooting = !this.shooting;
+    }
+
     if (this.y < this.centerY){
         this.x+= this.speed/2;
     }

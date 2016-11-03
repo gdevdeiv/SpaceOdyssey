@@ -2,6 +2,7 @@ var EnemyLaser = function(x, y, speed, angle, direction, animation) {
     Enemy.call(this, x, y, speed, angle, animation);
     this.direction = direction;
     this.shoot = true;
+    this.shooting = false;
 };
 
 EnemyLaser.prototype = Object.create(Enemy.prototype);
@@ -19,16 +20,20 @@ EnemyLaser.prototype.update = function() {
             this.y += this.speed;
             break;
         case "right":
-            this.angle = 3*Math.PI/2
+            this.angle = Math.PI/2
             this.x += this.speed;
             break;
         case "left":
-            this.angle = 3*Math.PI/2
+            this.angle = Math.PI/2
             this.x -= this.speed;
             break;
     }
     if (this.shoot == true){
         this.shootLaser();
         this.shoot = false;
+    }
+
+    if (ticks % 200 == 0) {
+        this.shooting = !this.shooting;
     }
 };
