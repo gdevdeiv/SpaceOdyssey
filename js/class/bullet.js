@@ -30,9 +30,11 @@ Bullet.prototype.tick = function() {
 };
 
 Bullet.prototype.update = function() {
-    if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-        this.destroyBullet(this);
-        return;
+    if(this.type != 4){
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+            this.destroyBullet(this);
+            return;
+        }
     }
 };
 

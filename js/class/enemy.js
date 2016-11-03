@@ -73,7 +73,7 @@ Enemy.prototype.shootFollower = function() {
 };
 
 Enemy.prototype.shootLaser = function() {
-    bullets.push(new BulletLaser(this));
+    bullets.push(new BulletLaser(this,this.angle));
 };
 
 function updateEnemies() {
