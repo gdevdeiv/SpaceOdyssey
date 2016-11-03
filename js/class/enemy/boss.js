@@ -111,10 +111,10 @@ EnemyBoss.prototype.moveInitialPosition = function(){
             if(this.y > height/2-width/2){
                 this.y -= this.speed;
             }
-            if(this.x > width/2 - this.speed+1 &&
-            this.x < width/2 + this.speed+1 &&
-            this.y > height/2-width/2 - this.speed+1 &&
-            this.y < height/2-width/2 + this.speed+1
+            if(this.x > width/2 - (this.speed+1) &&
+            this.x < width/2 + (this.speed+1) &&
+            this.y > height/2 - width/2 - (this.speed+1) &&
+            this.y < height/2-width/2 + (this.speed+1)
             ){
                 this.shootRadial();
                 this.pattern++;
@@ -224,10 +224,10 @@ EnemyBoss.prototype.moveToCenter = function(){
     if (this.y > height/2) {
         this.y -= this.speed;
     }
-    if(this.x > width/2 - this.speed+1 &&
-    this.x < width/2 + this.speed+1 &&
-    this.y > height/2 - this.speed+1 &&
-    this.y < height/2 + this.speed+1
+    if(this.x > width/2 - (this.speed+1) &&
+    this.x < width/2 + (this.speed+1) &&
+    this.y > height/2 - (this.speed+1) &&
+    this.y < height/2 + (this.speed+1)
     ){
         this.shootRadial();
         this.pattern++;
