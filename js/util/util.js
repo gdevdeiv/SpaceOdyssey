@@ -49,7 +49,7 @@ function nextRound() {
 	$("#round").html("<h1 class='glitch' data-text='Round " + round + "'>Round " + round + "</h1>").fadeIn("slow", function() {
 		setTimeout(function() {
 			$("#round").fadeOut("slow", function() {
-				/*for (var level in config.levels) {
+				for (var level in config.levels) {
 					for (var r in config.levels[level]) {
 						if (r != round - 1) { continue; }
 						if (config.levels[level][r].asteroids > 0) {
@@ -71,8 +71,7 @@ function nextRound() {
 							spawnEnemyBoss(config.levels[level][r].enemies.enemyBoss);
 						}
 					}
-				}*/
-				spawnEnemyBoss(1);
+				}
 			});
 		}, 2000);
 	});

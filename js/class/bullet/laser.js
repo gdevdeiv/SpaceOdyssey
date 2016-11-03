@@ -13,12 +13,15 @@ var BulletLaser = function(enemyRef, angle) {
 
 BulletLaser.prototype = Object.create(Bullet.prototype);
 BulletLaser.prototype.constructor = BulletLaser;
-Bullet.prototype.destroyBullet = function(bullet) {
-    
+BulletLaser.prototype.die = function(bullet) {
+    if(this.enemyRef.health < 1){
+        this.destroyBullet(this);
+    }
 };
 
 BulletLaser.prototype.update = function() {
     Bullet.prototype.update.call(this);
+    this.die();
     while(this.enemyRef.angle > 2*Math.PI){
         this.enemyRef.angle -= 2*Math.PI;
     }
@@ -120,6 +123,7 @@ BulletLaser.prototype.update = function() {
             this.deltaX = width - this.enemyRef.x;
             this.deltaY = Math.tan(this.angle)*this.deltaX;
         }
+        this.hitPlayer();
         this.width = Math.sqrt(Math.pow(this.deltaX, 2) + Math.pow(this.deltaY, 2)) - (this.height*2 + this.enemyRef.width/2);
     }
 
@@ -140,4 +144,52 @@ BulletLaser.prototype.update = function() {
 
 };
 
-BulletLaser.prototype.render = function() {};
+BulletLaser.prototype.hitPlayer = function() {
+    this.realDeltaY = player.y - this.enemyRef.y;
+    if(player.x > this.enemyRef.x && player.y < this.enemyRef.y){ //1
+        this.tanReal = Math.tan(this.angle);
+    }
+    if(player.x < this.enemyRef.x && player.y < this.enemyRef.y){ //2
+        this.tanReal = -Math.tan(Math.PI - this.angle);
+    }
+    if(player.x < this.enemyRef.x && player.y > this.enemyRef.y){  //3 
+        this.tanReal = -Math.tan(Math.PI-this.angle);
+    }
+    if(player.x > this.enemyRef.x && player.y > this.enemyRef.y){ //4
+        this.tanReal = Math.tan(this.angle);
+    }
+    this.theoricalDeltaX = this.realDeltaY / this.tanReal;
+    if( player.x + player.width/2 > this.enemyRef.x + this.theoricalDeltaX &&
+    player.x - player.width/2 < this.enemyRef.x + this.theoricalDeltaX
+    ){
+        this.deltaX = player.x - this.enemyRef.x;
+        this.deltaY = player.y - this.enemyRef.y;
+        if (!player.inmune){
+            audio.playBoom();
+            player.removeScore(150);
+            player.removeEnergy(1);
+            player.inmune = true;
+            clearTimeout(counterInmunity);
+            counterInmunity = setTimeout(function() {
+                player.inmune = false;   
+            }, player.inmuneTime);
+        }
+    }
+    if(this.angle == 0&&
+    player.y+player.height/2 > this.enemyRef.y &&
+    player.y-player.height/2 < this.enemyRef.y
+    ){
+        this.deltaX = player.x - this.enemyRef.x;
+        this.deltaY = player.y - this.enemyRef.y;
+        if (!player.inmune){
+            audio.playBoom();
+            player.removeScore(150);
+            player.removeEnergy(1);
+            player.inmune = true;
+            clearTimeout(counterInmunity);
+            counterInmunity = setTimeout(function() {
+                player.inmune = false;   
+            }, player.inmuneTime);
+        }
+    }
+};

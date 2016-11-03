@@ -29,6 +29,7 @@ var config = {
                     "enemyFollower": 1,
                     "enemyParabolic": 1,
                     "enemyWave": 1,
+                    "enemyLaser": 1,
 
                     "enemyBoss": 0
                 },
@@ -40,6 +41,7 @@ var config = {
                     "enemyFollower": 2,
                     "enemyParabolic": 1,
                     "enemyWave": 2,
+                    "enemyLaser": 1,
 
                     "enemyBoss": 0
                 },
@@ -51,6 +53,7 @@ var config = {
                     "enemyFollower": 3,
                     "enemyParabolic": 2,
                     "enemyWave": 3,
+                    "enemyLaser": 1,
 
                     "enemyBoss": 0
                 },
@@ -61,6 +64,7 @@ var config = {
                     "enemyFollower": 0,
                     "enemyParabolic": 0,
                     "enemyWave": 0,
+                    "enemyLaser": 1,
 
                     "enemyBoss": 1
                 },

@@ -30,7 +30,7 @@ EnemyBoss.prototype.update = function() {
     }
 
 
-    if (ticks - this.simpleTick > this.ticksBetwnSimple){
+   if (ticks - this.simpleTick > this.ticksBetwnSimple){
         this.shootSimple();
         this.simpleTick = ticks;
     }
@@ -59,6 +59,12 @@ EnemyBoss.prototype.update = function() {
     }
     if (this.pattern == 2){ // embestida
         this.charge();
+    }
+    if (this.pattern == 3){
+        this.moveToCenter(); // mueve al centro
+    }
+    if (this.pattern == 4){
+        this.circularShooting();
     }
     if (ticks % this.animation.getUpdateFrequency() === 0) {
         this.animation.tick();
@@ -89,7 +95,6 @@ EnemyBoss.prototype.moveInitialPosition = function(){
             this.y < this.height/2 + (this.speed + 2)
             ){
                 this.shootRadial();
-                console.log("patron 1 cicrulos")
                 this.pattern++;
                 this.centerY = height/2;
                 this.radius = this.centerY-this.y;
@@ -110,21 +115,17 @@ EnemyBoss.prototype.moveInitialPosition = function(){
             this.y < height/2-width/2 + this.speed+1
             ){
                 this.shootRadial();
-                console.log("patron 1 circulos")
                 this.pattern++;
                 this.centerY = height/2;
                 this.radius = this.centerY-this.y;
                 this.centerX = this.x-0.01;
-                this.durationPattern2 = 1000 + Math.random()*500;
+                this.durationPattern2 = 500 + Math.random()*500;
                 this.saveSpeed = this.speed;
             }
         }
 }
 
 EnemyBoss.prototype.circularMovement = function(){
-    if (ticks % 200 == 0) {
-        this.shooting = !this.shooting;
-    }
 
     if (this.y < this.centerY){
         this.x+= this.speed/2;
@@ -153,7 +154,6 @@ EnemyBoss.prototype.circularMovement = function(){
     }
     this.durationPattern2--;
     if(this.durationPattern2 < 0){
-        console.log("patron 2 carga")
         this.shootRadial();
         this.shootSimple();
         this.shootFollower();
@@ -167,7 +167,6 @@ EnemyBoss.prototype.circularMovement = function(){
 EnemyBoss.prototype.charge = function(){
     this.angle = this.chargeAngle;
     if(ticks - this.chargeTick < this.chargePreparation){
-        console.log("preparando");
         this.x += this.speed*0.1*Math.cos(this.angle - Math.PI);
         this.y += this.speed*0.1*Math.sin(this.angle - Math.PI);
         if(this.x < 0) {
@@ -184,12 +183,45 @@ EnemyBoss.prototype.charge = function(){
         }
 
     }else{
-        console.log("cargando")
         this.x += this.speed*3*Math.cos(this.angle);
         this.y += this.speed*3*Math.sin(this.angle);
         if(this.x < 30 || this.y < 30 || this.x > width - 30 || this.y > height - 30){
-            console.log("vuelta a empezar, patron 0");
-            this.pattern = 0;
+            this.pattern ++;
         }
     }
+}
+
+EnemyBoss.prototype.moveToCenter = function(){
+    if (this.x < width/2){
+        this.x += this.speed;
+    }
+    if (this.x > width/2) {
+        this.x -= this.speed;
+    }
+    if (this.y < height/2) {
+        this.y += this.speed;
+    }
+    if (this.y > height/2) {
+        this.y -= this.speed;
+    }
+    if(this.x > width/2 - this.speed+1 &&
+    this.x < width/2 + this.speed+1 &&
+    this.y > height/2 - this.speed+1 &&
+    this.y < height/2 + this.speed+1
+    ){
+        this.shootRadial();
+        this.pattern++;
+        this.durationPattern3 = 1000 + Math.random()*200;
+        this.initialAngle = this.angle;
+    }
+}
+
+EnemyBoss.prototype.circularShooting = function(){
+    this.initialAngle +=0.01;
+    this.angle = this.initialAngle;
+    this.shooting = true;
+    this.durationPattern3--;
+    if(this.durationPattern3 < 0){
+        this.pattern = 0;
+    } 
 }
