@@ -30,9 +30,11 @@ Bullet.prototype.tick = function() {
 };
 
 Bullet.prototype.update = function() {
-    if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-        this.destroyBullet(this);
-        return;
+    if(this.type != 4){
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+            this.destroyBullet(this);
+            return;
+        }
     }
 };
 
@@ -101,7 +103,9 @@ Bullet.prototype.asteroidCollision = function() {
                 asteroids.push(new Asteroid(asteroids[asteroid].x,asteroids[asteroid].y,asteroids[asteroid].speed,0,asteroids[asteroid].size+1,"left","down"));
             }
             asteroids.splice(asteroid, 1);
-            this.destroyBullet(this);
+            if(this.type != 4){
+                this.destroyBullet(this);
+            }
             break;
         }
     }

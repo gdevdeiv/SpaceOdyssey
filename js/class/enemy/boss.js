@@ -11,7 +11,6 @@ var EnemyBoss = function(x, y, speed, angle, animation) {
     this.ticksBetwnRadial = 401;
     this.followerTick = ticks;
     this.ticksBetwnFollower = 503;
-    this.aceleration = 0.015;
     this.chargeTick = ticks;
     this.chargePreparation = 60;
     this.saveSpeed = this.speed;
@@ -25,7 +24,7 @@ EnemyBoss.prototype.constructor = EnemyBoss;
 EnemyBoss.prototype.update = function() {
     Enemy.prototype.update.call(this);
     if (this.shoot == true){
-        this.shootLaser();
+        this.shootLaser(); //crea el laser
         this.shoot = false;
     }
 
@@ -64,6 +63,7 @@ EnemyBoss.prototype.update = function() {
         this.moveToCenter(); // mueve al centro
     }
     if (this.pattern == 4){
+        this.shooting = true;
         this.circularShooting();
     }
     if (ticks % this.animation.getUpdateFrequency() === 0) {
@@ -99,7 +99,7 @@ EnemyBoss.prototype.moveInitialPosition = function(){
                 this.centerY = height/2;
                 this.radius = this.centerY-this.y;
                 this.centerX = this.x-0.01;
-                this.durationPattern2 = 1000 + Math.random()*500;
+                this.durationPattern2 = 300 + Math.random()*500;
                 this.saveSpeed = this.speed;
                 this.circAngle = 3*Math.PI/2;
             }
@@ -121,7 +121,7 @@ EnemyBoss.prototype.moveInitialPosition = function(){
                 this.centerY = height/2;
                 this.radius = this.centerY - this.y;
                 this.centerX = this.x;
-                this.durationPattern2 = 500 + Math.random()*500;
+                this.durationPattern2 = 300 + Math.random()*500;
                 this.saveSpeed = this.speed;
                 this.circAngle = 3*Math.PI/2;
             }
@@ -177,7 +177,7 @@ EnemyBoss.prototype.circularMovement = function(){
         this.shootRadial();
         this.shootSimple();
         this.shootFollower();
-        this.pattern++  
+        this.pattern++; 
         this.chargeTick = ticks;
         this.chargeAngle = this.angle;
         this.speed = this.saveSpeed;
@@ -238,9 +238,8 @@ EnemyBoss.prototype.moveToCenter = function(){
 }
 
 EnemyBoss.prototype.circularShooting = function(){
-    this.initialAngle +=0.01;
+    this.initialAngle += 0.01;
     this.angle = this.initialAngle;
-    this.shooting = true;
     this.durationPattern3--;
     if(this.durationPattern3 < 0){
         this.shooting = false;
