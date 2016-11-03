@@ -26,10 +26,10 @@ EnemyWave.prototype.update = function() {
         if (ticks % (Math.round(Math.random() * 50) + 150) === 0) {
             this.shootSimple();
         }
-        if (ticks % (Math.round(Math.random() * 50) + 200) === 0) {
+        if (ticks % (Math.round(Math.random() * 50) + 700) === 0) {
             this.shootRadial();
         }
-        if (ticks % (Math.round(Math.random() * 50) + 300) === 0) {
+        if (ticks % (Math.round(Math.random() * 50) + 1000) === 0) {
             this.shootFollower();
         }
     }

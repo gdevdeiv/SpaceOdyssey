@@ -64,7 +64,7 @@ var config = {
                     "enemyFollower": 0,
                     "enemyParabolic": 0,
                     "enemyWave": 0,
-                    "enemyLaser": 1,
+                    "enemyLaser": 0,
 
                     "enemyBoss": 1
                 },

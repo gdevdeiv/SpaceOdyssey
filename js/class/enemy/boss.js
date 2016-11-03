@@ -129,7 +129,6 @@ EnemyBoss.prototype.moveInitialPosition = function(){
 }
 
 EnemyBoss.prototype.circularMovement = function(){
-    console.log(Math.cos(0))
     this.x = this.centerX + this.radius * Math.cos(this.circAngle);
     this.y = this.centerY + this.radius * Math.sin(this.circAngle);
     this.circAngle += 0.01;
@@ -234,6 +233,7 @@ EnemyBoss.prototype.moveToCenter = function(){
         this.pattern++;
         this.durationPattern3 = 1000 + Math.random()*200;
         this.initialAngle = this.angle;
+        this.shooting = true;
     }
 }
 
