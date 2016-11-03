@@ -222,6 +222,7 @@ EnemyBoss.prototype.circularShooting = function(){
     this.shooting = true;
     this.durationPattern3--;
     if(this.durationPattern3 < 0){
+        this.shooting = false;
         this.pattern = 0;
     } 
 }
