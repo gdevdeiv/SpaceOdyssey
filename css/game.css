@@ -2,12 +2,13 @@
     font-family: '8bitOperatorRegular';
     src: url('../fonts/8bitOperatorPlus8-Regular.ttf');
 }
+
 @font-face {
     font-family: '8bitOperatorBold';
     src: url('../fonts/8bitOperatorPlus8-Bold.ttf');
 }
 
-body, html {
+html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -15,9 +16,7 @@ body, html {
     height: 100%;
 }
 
-audio {
-    display: none;
-}
+audio { display: none; }
 
 canvas, #menu, #gameover, #round {
     position: absolute;
@@ -28,9 +27,13 @@ canvas, #menu, #gameover, #round {
     text-align: center;
 }
 
-#bgCanvas {
-    background: #171717;
+#menu, #gameover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+#bgCanvas { background: #171717; }
 
 #round {
     display: none;
@@ -59,6 +62,7 @@ canvas, #menu, #gameover, #round {
 }
 
 #menu > button, #gameover > button {
+    margin: 0 auto;
     width: 320px;
     height: 100px;
     background: transparent;
