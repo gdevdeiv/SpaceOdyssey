@@ -53,6 +53,13 @@ canvas, #menu, #gameover, #round {
     user-select: none;
 }
 
+#menu > h1, #gameover > h1, #gameover > h1, #gameover > h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#gameover > h3:last-child { margin-bottom: 15px; }
+
 #gameover > h3 {
     font-family: '8bitOperatorBold';
     font-size: 3em;
