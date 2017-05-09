@@ -11,18 +11,21 @@ body, html {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 audio {
     display: none;
 }
 
-canvas {
+canvas, #menu, #gameover, #round {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    text-align: center;
 }
 
 #bgCanvas {
@@ -34,13 +37,6 @@ canvas {
     pointer-events: none;
 }
 
-#menu, #round, #gameover {
-    position: absolute;
-    top: 30%;
-    width: 100%;
-    text-align: center;
-}
-
 #gameover {
     display: none;
     top: 15% !important;
@@ -48,7 +44,7 @@ canvas {
 
 #menu > h1, #round > h1, #gameover > h1 {
     font-family: '8bitOperatorBold';
-    font-size: 96px;
+    font-size: 6em;
     color: white;
     cursor: default;
     user-select: none;
@@ -56,7 +52,7 @@ canvas {
 
 #gameover > h3 {
     font-family: '8bitOperatorBold';
-    font-size: 72px;
+    font-size: 3em;
     color: white;
     cursor: default;
     user-select: none;
